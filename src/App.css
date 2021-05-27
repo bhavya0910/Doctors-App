@@ -1,39 +1,60 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,600;1,800;1,900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --background:#F7F9FF;
+  --f_button:#172578;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+*{
+  font-family: 'Rubik', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button.outlined{
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  border-width: 1px;
+  color: var(--f_button);
+  padding:10px;
+  cursor: pointer;
+  background-color: white;
+  border-color: var(--f_button);
+  transition: all ease-in-out 0.1s;
 }
-
-.App-link {
-  color: rgb(112, 76, 182);
+button.outlined:focus{
+  box-shadow: 0px 0px 1px 1px #17267862;
+  outline: 2px dotted var(--f_button);
 }
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+button.outlined:hover{
+  background-color: var(--f_button);
+  color: white;
+}
+button.filled{
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  border-width: 1px;
+  color: white;
+  padding:10px;
+  cursor: pointer;
+  background-color: var(--f_button);
+  border-color: var(--f_button);
+  transition: all ease-in-out 0.1s;
+}
+button.filled:focus{
+  box-shadow: 0px 0px 1px 1px #17267862;
+  outline: 2px dotted var(--f_button);
+}
+input.outline_def{
+  padding: 5px;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border-color: rgba(0, 0, 0, 0.089);
+  border-radius:20px;
+  height: 40px;
+}
+input.outline_def:focus{
+  border-color:var(--f_button);
 }

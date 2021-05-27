@@ -44,6 +44,9 @@ class Login extends Component {
                             </div>
                          </div>
                     </div>
+                    <div className="small_screen_signup">
+                            Don’t have an account? <u>Sign Up</u>
+                    </div>
                 </div>
             </div>
         )
