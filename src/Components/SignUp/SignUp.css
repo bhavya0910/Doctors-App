@@ -1,0 +1,105 @@
+.signUp_wrapper{
+    display: flex;
+    height: 100vh;
+}
+.right_content_signUp{
+    overflow-y: auto;
+    padding-left: 50px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+.right_header{
+    padding-top: 34px;
+    font-weight: 400;
+    padding-bottom: 20px;
+    font-size: 2em;
+}
+.doctor_opt{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.doctor_opt button{
+    margin-left: 20px;
+    width: 120px;
+}
+.patient_opt{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.patient_opt img{
+    width: 100%;
+}
+.doctor_opt img{
+    width: 100%;
+}
+.patient_opt button{
+    margin-left: 20px;
+    width: 120px;
+}
+.abs_arrow{
+    display: none;
+}
+@media screen and (max-width:707px){
+    .right_header{
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+        font-size: 1.8em;
+        align-items: center;
+        transition: all ease-in-out 0.1s;
+    }
+    .abs_arrow{
+        display: block;
+       display: flex;
+    }
+    .abs_arrow:hover{
+        background-color: #1726781a;
+    }
+    .abs_arrow:focus{
+        background-color: #1726781a;
+       outline: 2px dotted black;
+    }
+    .right_content_signUp{
+        width: 100%;
+        display: flex;
+        overflow-x: hidden;
+        align-items: center;
+        /* justify-content: space-evenly; */
+        align-content: center;
+        padding-left: 0px;
+    }
+    .doctor_opt{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.103);
+        padding: 5px;
+    }
+    .patient_opt button{
+        margin-left: 0px;
+        width: 120px;
+        margin-top: 5px;
+    }
+    .doctor_opt button{
+        margin-left: 0px;
+        width: 120px;
+        margin-top: 5px;
+    }
+    .patient_opt{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.103);
+        margin-bottom:10px ;
+    }
+    
+}

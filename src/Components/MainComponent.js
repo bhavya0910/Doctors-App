@@ -6,14 +6,18 @@ import {
     Link
   } from "react-router-dom";
 import Login from './Login/Login.js';
+import SignUp from './SignUp/SignUp.js';
 
 class MainComponent extends Component {
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route path="/">
+                    <Route path="/" exact>
                         <Login></Login>
+                    </Route>
+                    <Route path="/signup" exact>
+                        <SignUp></SignUp>
                     </Route>
                 </Switch>
             </Router>

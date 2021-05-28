@@ -25,7 +25,6 @@
     height: 80%;
     width: 80%;
     object-fit: contain;
- 
 }
 .right_content{
     width: 50%;
@@ -50,7 +49,9 @@
     flex-direction: column;
     width: 70%;
     height: 100%;
-    justify-content: space-evenly;
+}
+.signin_form form input{
+    margin-bottom: 30px;
 }
 .header_absolute{
     /* position: absolute; */
@@ -88,8 +89,14 @@
     width: 80px;
     cursor: pointer;
 }
+.facebook_opt:hover{
+    background-color: #17267818;
+}
 .facebook_opt:focus{
     outline: 3px dotted #17267896;
+    background-color: #17267818;
+}
+.google_opt:hover{
     background-color: #17267818;
 }
 .google_opt:focus{
@@ -103,8 +110,12 @@
     display: none;
 }
 /*Media Queries*/
-
-@media screen and (max-width: 1000px){
+@media screen and (min-width:707px) and (max-width: 1000px){
+    .signin_form form{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 707px){
     .left_content{
         display: none;
     }

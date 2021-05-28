@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import LoginProto from '../../assests/loginProto.svg';
 import facebookLogo from '../../assests/facebookLogo.svg'
 import googleLogo from '../../assests/googleLogo.svg';
+import {Link} from 'react-router-dom';
 class Login extends Component {
     render() {
         return (
@@ -13,16 +14,17 @@ class Login extends Component {
                         <div>
                         Don't have an account?
                             </div>
-                        <button className="outlined">Sign Up</button>
+                            <Link to="/signUp"><button className="outlined">Sign Up</button></Link>
                     </div>
                     <img src={LoginProto}></img>
                 </div>
                 <div className="right_content">
                     <div className="signuptext">Sign in to your Account</div>
                     <div className="signin_form">
-                        <form>
-                            <input className="outline_def" placeholder="username"></input>
-                            <input className="outline_def" placeholder="password" type="password"></input>
+                        <form onSubmit={(e)=>{e.preventDefault();
+                        console.log(e)}}>
+                            <input className="outline_def" id="userName" placeholder="username"></input>
+                            <input className="outline_def" id="password" placeholder="password" type="password"></input>
                             <button className="filled">Sign In</button>
                         </form>
                     </div>
@@ -45,7 +47,7 @@ class Login extends Component {
                          </div>
                     </div>
                     <div className="small_screen_signup">
-                            Don’t have an account? <u>Sign Up</u>
+                            Don’t have an account? <Link to="/signUp"><u>Sign Up</u></Link>
                     </div>
                 </div>
             </div>
