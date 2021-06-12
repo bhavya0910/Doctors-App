@@ -38,13 +38,18 @@ class SignUp extends Component {
               <div>
                 <img src={doctorSvg}></img>
               </div>
+              <Link to="/signup/2">
               <button className="outlined">Doctor</button>
+              </Link>
+             
             </div>
             <div className="patient_opt">
               <div>
                 <img src={patientSvg}></img>
               </div>
-              <button className="outlined">Patient</button>
+              <Link to="/signup/2">
+                <button className="outlined">Patient</button>
+              </Link>
             </div>
           </div>
         </div>
