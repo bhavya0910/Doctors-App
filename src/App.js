@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import logo from "./logo.svg";
 import Posts from "./Components/MainComponent.js";
 import "./App.css";
@@ -21,28 +21,31 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-            {!this.state.loggedIn ? (
-                <Switch>
+          {!this.state.loggedIn ? (
+            <Switch>
               <Route path="/" exact>
                 <Login></Login>
               </Route>
-                 <Route path="/signup/1" exact>
-                 <SignUp></SignUp>
-               </Route>
-               <Route path="/signup/2" exact>
-                 <SignUpTwo></SignUpTwo>
-               </Route>
-               <Route path="/signup/3" exact>
-                 <SignUpThree></SignUpThree>
-               </Route>
-               </Switch>
-            ) : (
-              <Switch>
-              <Route path="/" exact>
-                <MainComponent></MainComponent>
+              <Route path="/signup/1" exact>
+                <SignUp></SignUp>
               </Route>
-              </Switch>
-            )}
+              <Route path="/signup/2" exact>
+                <SignUpTwo></SignUpTwo>
+              </Route>
+              <Route path="/signup/3" exact>
+                <SignUpThree></SignUpThree>
+              </Route>
+            </Switch>
+          ) : (
+            <Switch>
+              <Route
+                path="/"
+                render={(props) => (
+                  <MainComponent history={props.history}></MainComponent>
+                )}
+              ></Route>
+            </Switch>
+          )}
         </Router>
       </div>
     );
