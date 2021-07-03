@@ -4,6 +4,14 @@
     --back_white:#f7f9ff;
     --stat_color:#BDBDBD;
 }
+.m_card.card_active{
+    border:1px solid var(--f_button);
+    color: var(--f_button) !important;
+    font-weight: 600;
+}
+.m_card.card_active .stat_name{
+    color: var(--f_button);
+}
 .m_card{
     background-color: red;
     height: 85px;
@@ -21,6 +29,6 @@
     font-size: 0.8rem;
 }
 .stat_val{
-    font-size: 1.4em;
+    font-size: 1.6em;
     font-weight: 400;
 }

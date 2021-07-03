@@ -1,0 +1,19 @@
+.wrapper{
+    display: flex;
+}
+.left_appointment_content{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    height: 700px;
+   
+}
+.left_appointment_content button{
+    width: 80%;
+    margin-bottom: 12px;
+}
+.right_appointment_content{
+    width: 80%;
+}

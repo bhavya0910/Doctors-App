@@ -3,6 +3,7 @@
 :root {
   --background:#F7F9FF;
   --f_button:#172578;
+  --type1_background:#DCE1F9;
 }
 *{
   font-family: 'Rubik', sans-serif;
@@ -41,10 +42,38 @@ button.filled{
   background-color: var(--f_button);
   border-color: var(--f_button);
   transition: all ease-in-out 0.1s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 button.filled:focus{
   box-shadow: 0px 0px 1px 1px #17267862;
   outline: 2px dotted var(--f_button);
+}
+button.type1{
+  border-radius: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  border-width: 1px;
+  color: var(--f_button);
+  padding:10px;
+  outline: none;
+  cursor: pointer;
+  background-color: var(--type1_background);
+  border-color: var(--type1_background);
+  transition: all ease-in-out 0.1s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  border: 1px;
+}
+button.type1:focus{
+  box-shadow: 0px 0px 2px 1px #17267862;
+  outline: 1px dotted black;
 }
 input.outline_def{
   padding: 5px;

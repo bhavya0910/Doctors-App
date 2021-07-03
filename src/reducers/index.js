@@ -1,5 +1,6 @@
-// import {combineReducers} from 'redux';
+import {combineReducers} from 'redux';
+import loginReducer from './loginStatus';
 
-// export default combineReducers({
-//     posts:postReducer,
-// })
+export default combineReducers({
+    loggedIn:loginReducer,
+})

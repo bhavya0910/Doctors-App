@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import { Calendar, momentLocalizer,Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import './Appointment.css';
+import './Schedule.css';
 
 const localizer = momentLocalizer(moment);
 
@@ -12,7 +12,8 @@ class Appointment extends Component {
       <div className="wrapper">
         <div className="left_appointment_content">
           <button className="type1">Add Appointment</button>
-          
+          <button className="type1">Add Remainder</button>
+          <button className="type1">Add Note</button>
           </div>
         <div style={{ height: 700 }} className="right_appointment_content">
           

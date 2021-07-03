@@ -20,17 +20,33 @@ import Avatar from "@material-ui/core/Avatar";
 import Stats from "./StatsDisp/stats.js";
 import Home from "./HomeComponent/Home";
 import Appointment from "./Appointments/Appointment.js";
+import Schedule from "./Schedule/Schedule";
+import LogoSvg from "../assests/logo.svg";
+import { connect } from "react-redux";
+import { Toggle_Logged_In } from "../actions/toggleLogged";
 
 class MainComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeMenuItem: "4",
+      isPopOverVisible: false,
     };
+    this.setActiveMenu = this.setActiveMenu.bind(this);
+  }
+  setActiveMenu(num) {
+    this.setState({ ...this.state, activeMenuItem: num });
   }
   render() {
     return (
-      <div className="layout_wrapper">
+      <div
+        className="layout_wrapper"
+        onClick={() => {
+          if (this.state.isPopOverVisible) {
+            this.setState({ ...this.state, isPopOverVisible: false });
+          }
+        }}
+      >
         <div className="left_sider">
           <div className="sider_menu">
             <Link to="/">
@@ -61,18 +77,21 @@ class MainComponent extends Component {
                 Appointments
               </div>
             </Link>
-            <div
-              tabIndex={1}
-              className={`schedule${
-                this.state.activeMenuItem == 3 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 3 });
-              }}
-            >
-              <img src={scheduleSvg} style={{ marginRight: "8px" }}></img>{" "}
-              Schedule
-            </div>
+            <Link to="/schedule">
+              <div
+                tabIndex={1}
+                className={`schedule${
+                  this.state.activeMenuItem == 3 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 3 });
+                }}
+              >
+                <img src={scheduleSvg} style={{ marginRight: "8px" }}></img>{" "}
+                Schedule
+              </div>
+            </Link>
+
             <div
               tabIndex={1}
               className={`connections${
@@ -102,6 +121,9 @@ class MainComponent extends Component {
         <div className="right_content_layout">
           <div className="right_header_layout">
             <div className="over_view_text">Overview</div>
+            <div>
+              <img style={{ width: "100px" }} src={LogoSvg}></img>
+            </div>
             <div className="right_view_area">
               <div className="search_icon">
                 <svg
@@ -151,12 +173,38 @@ class MainComponent extends Component {
               <div className="stick"></div>
               <div className="profile_disp">
                 <div>Yuvraj Mann</div>
-                <Avatar>YM</Avatar>
+                <Avatar
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      isPopOverVisible: !this.state.isPopOverVisible,
+                    });
+                  }}
+                >
+                  YM
+                </Avatar>
+              </div>
+              <div
+                className={
+                  this.state.isPopOverVisible
+                    ? "popover_profile visible"
+                    : "popover_profile"
+                }
+              >
+                <div className="menu_item">Yuvraj Mann</div>
+                <div className="menu_item" onClick={()=>{
+                  this.props.Toggle_Logged_In();
+                  delete localStorage.token;
+                  this.props.history.push('/');
+                }}>Logout</div>
               </div>
             </div>
           </div>
           <div className="stats_disp">
-            <Stats></Stats>
+            <Stats
+              setActiveMenu={this.setActiveMenu}
+              activeMenuItem={this.state.activeMenuItem}
+            ></Stats>
           </div>
           <div className="main_layout_content">
             <Switch>
@@ -167,6 +215,12 @@ class MainComponent extends Component {
                 key={2}
                 component={Appointment}
               ></Route>
+              <Route
+                path="/schedule"
+                exact
+                key={3}
+                component={Schedule}
+              ></Route>
             </Switch>
           </div>
         </div>
@@ -174,5 +228,7 @@ class MainComponent extends Component {
     );
   }
 }
-
-export default MainComponent;
+const mapStateToProps = (state) => ({
+  loggedIn: state.loggedIn.loggedIn,
+});
+export default connect(mapStateToProps, { Toggle_Logged_In })(MainComponent);
