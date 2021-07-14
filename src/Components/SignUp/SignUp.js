@@ -5,11 +5,15 @@ import patientSvg from "../../assests/patient.svg";
 import { Link } from "react-router-dom";
 import LoginProto from "../../assests/loginProto.svg";
 import backArrow from "../../assests/backArrow.svg";
+import { connect } from "react-redux";
+import {Set_Signup_Data} from "../../actions/setSignUp";
+
 class SignUp extends Component {
   constructor(props) {
     super(props);
   }
   render() {
+    console.log(this.props.signup_data);
     return (
       <>
         <div className="signUp_wrapper">
@@ -39,7 +43,9 @@ class SignUp extends Component {
                 <img src={doctorSvg}></img>
               </div>
               <Link to="/signup/2">
-              <button className="outlined">Doctor</button>
+              <button className="outlined" onClick={()=>{
+                  this.props.Set_Signup_Data({type:'Doctor'});
+                }}>Doctor</button>
               </Link>
              
             </div>
@@ -48,7 +54,10 @@ class SignUp extends Component {
                 <img src={patientSvg}></img>
               </div>
               <Link to="/signup/2">
-                <button className="outlined">Patient</button>
+                <button onClick={()=>{
+                  console.log('e');
+                  this.props.Set_Signup_Data({type:'Patient'});
+                }} className="outlined">Patient</button>
               </Link>
             </div>
           </div>
@@ -57,4 +66,7 @@ class SignUp extends Component {
     );
   }
 }
-export default SignUp;
+const mapStateToProps = (state) => ({
+  signUpData: state.signUpData.signup_data,
+});
+export default connect(mapStateToProps, { Set_Signup_Data })(SignUp);

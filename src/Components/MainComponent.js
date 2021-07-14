@@ -20,6 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Stats from "./StatsDisp/stats.js";
 import Home from "./HomeComponent/Home";
 import Appointment from "./Appointments/Appointment.js";
+import Connections from "./Connections/connections.js";
 import Schedule from "./Schedule/Schedule";
 import LogoSvg from "../assests/logo.svg";
 import { connect } from "react-redux";
@@ -91,7 +92,7 @@ class MainComponent extends Component {
                 Schedule
               </div>
             </Link>
-
+            <Link to="/connections">
             <div
               tabIndex={1}
               className={`connections${
@@ -104,6 +105,7 @@ class MainComponent extends Component {
               <img src={connectionSvg} style={{ marginRight: "8px" }}></img>
               Connections
             </div>
+            </Link>
             <div
               tabIndex={1}
               className={`settings${
@@ -194,7 +196,8 @@ class MainComponent extends Component {
                 <div className="menu_item">Yuvraj Mann</div>
                 <div className="menu_item" onClick={()=>{
                   this.props.Toggle_Logged_In();
-                  delete localStorage.token;
+                  delete localStorage.username;
+                  delete localStorage.password;
                   this.props.history.push('/');
                 }}>Logout</div>
               </div>
@@ -220,6 +223,12 @@ class MainComponent extends Component {
                 exact
                 key={3}
                 component={Schedule}
+              ></Route>
+               <Route
+                path="/connections"
+                exact
+                key={3}
+                component={Connections}
               ></Route>
             </Switch>
           </div>
