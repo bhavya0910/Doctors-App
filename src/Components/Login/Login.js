@@ -33,7 +33,15 @@ class Login extends Component {
         message.success("Successfully Logged In");
         localStorage.setItem("username", this.state.username);
         localStorage.setItem("password", this.state.password);
-
+        let type;
+        if(res.data.is_doctor){
+          type="Doctor";
+          localStorage.setItem("user_type",'Doctor');
+        }
+        else if(res.data.is_patient){
+          type="Paient";
+          localStorage.setItem("user_type",'Patient');
+        }
         axiosInstance.interceptors.request.use(function (config) {
           config.headers.auth = {
             username: this.state.username,
@@ -41,7 +49,10 @@ class Login extends Component {
           };
           return config;
         });
-        this.props.Toggle_Logged_In(!this.props.loggedIn);
+        this.props.Toggle_Logged_In({
+          loggedIn:!this.props.loggedIn,
+          user_type:type
+        });
       })
       .catch((err) => {
         this.setState({ ...this.state, loading: false });

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import Posts from "./Components/MainComponent.js";
 import "./App.css";
-import MainComponent from "./Components/MainComponent.js";
+import DoctorDashboard from '../src/Dashboards/DoctorDashboard';
+import PatientDashboard from '../src/Dashboards/PatientDashboard';
+import MainComponent from '../src/Components/MainComponent';
 import { Provider } from "react-redux";
 import store from "./app/store.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -18,8 +20,8 @@ class App extends Component {
   componentDidMount() {
     let username = localStorage.getItem("username");
     let password = localStorage.getItem("password");
-
-    if (username && password) {
+    let type=localStorage.getItem("user_type");
+    if (username && password&&type) {
       axiosInstance.interceptors.request.use(function (config) {
         config.headers.auth = {
           username: username,
@@ -27,16 +29,23 @@ class App extends Component {
         };
         return config;
       });
-      this.props.Toggle_Logged_In(true);
+      
+      this.props.Toggle_Logged_In({
+        loggedIn:true,
+        user_type:type
+      });
     } else {
-      this.props.Toggle_Logged_In(false);
+      this.props.Toggle_Logged_In({
+        loggedIn:false,
+        user_type:type
+      });
     }
   }
   render() {
     return (
       <div className="App">
         <Router>
-          {!this.props.loggedIn ? (
+          {!this.props.loggedIn.loggedIn ? (
             <Switch>
               <Route path="/" exact>
                 <Login></Login>
@@ -60,14 +69,26 @@ class App extends Component {
               ></Route>
             </Switch>
           ) : (
-            <Switch>
+            (this.props.loggedIn.user_type=="Doctor")?(
+              <Switch>
               <Route
                 path="/"
                 render={(props) => (
-                  <MainComponent history={props.history}></MainComponent>
+                  <DoctorDashboard history={props.history}></DoctorDashboard>
                 )}
               ></Route>
             </Switch>
+            )
+            :(
+              <Switch>
+              <Route
+                path="/"
+                render={(props) => (
+                  <PatientDashboard history={props.history}></PatientDashboard>
+                )}
+              ></Route>
+            </Switch>
+            )
           )}
         </Router>
       </div>
@@ -75,6 +96,6 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  loggedIn: state.loggedIn.loggedIn,
+  loggedIn: state.loggedIn,
 });
 export default connect(mapStateToProps, { Toggle_Logged_In })(App);

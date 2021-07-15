@@ -3,6 +3,7 @@ import {ToggleLoggedIn} from '../actions/types';
 
 let intitialState={
     loggedIn:true,
+    user_type:null,
 }
 
 export default function(state=intitialState,action){
@@ -10,7 +11,8 @@ export default function(state=intitialState,action){
         case ToggleLoggedIn:
             return {
                 ...state,
-                loggedIn: action.payload
+                loggedIn: action.payload.loggedIn,
+                user_type:action.payload.user_type
             }
         default:
             return state;
