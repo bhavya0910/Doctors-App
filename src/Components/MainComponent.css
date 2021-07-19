@@ -25,6 +25,7 @@
     position: absolute;
     right:0px;
     display: block;
+    top:0px;
     width: 83%;
     position: fixed;
     background-color: var(--back_white);

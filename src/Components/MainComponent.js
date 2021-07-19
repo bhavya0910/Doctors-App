@@ -238,6 +238,6 @@ class MainComponent extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  loggedIn: state.loggedIn.loggedIn,
+  signUpData: state.signUpData.signup_data,
 });
 export default connect(mapStateToProps, { Toggle_Logged_In })(MainComponent);

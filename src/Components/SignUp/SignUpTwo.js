@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Set_Signup_Data } from "../../actions/setSignUp";
 import { connect } from "react-redux";
 import { message } from "antd";
+import * as EmailValidator from "email-validator";
 
 class SignUpTwo extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class SignUpTwo extends Component {
               <input
                 className="outline_def"
                 id="userName"
+                required
                 placeholder="username"
                 onChange={(e) => {
                   this.setState({
@@ -52,41 +54,66 @@ class SignUpTwo extends Component {
               <input
                 className="outline_def"
                 id="email"
+                required
                 placeholder="email"
                 onChange={(e) => {
-                    this.setState({
-                      ...this.state,
-                      email: e.target.value,
-                    });
-                  }}
+                  this.setState({
+                    ...this.state,
+                    email: e.target.value,
+                  });
+                }}
               ></input>
               <input
                 className="outline_def"
                 id="contact"
+                type="tel"
+                required
                 placeholder="contact"
                 onChange={(e) => {
-                    this.setState({
-                      ...this.state,
-                      contact: e.target.value,
-                    });
-                  }}
+                  this.setState({
+                    ...this.state,
+                    contact: e.target.value,
+                  });
+                }}
               ></input>
-              
-                <button className="filled" type="submit" onClick={()=>{
-                    if(this.state.username!=""){
+
+              <button
+                className="filled"
+                type="submit"
+                onClick={() => {
+                  if (
+                    this.state.username &&
+                    this.state.contact &&
+                    this.state.email
+                  ) {
+                    let isEmailValid = EmailValidator.validate(
+                      this.state.email
+                    );
+                    if (isEmailValid) {
+                     
+                      let len=this.state.contact.length;
+                      var phoneno = /^\d{10}$/;
+                      let isPhoneValid=this.state.contact.match(phoneno);
+                      if(isPhoneValid&&len==10){
                         this.props.Set_Signup_Data({
-                            ...this.props.signUpData,...this.state
-                        })
-                        this.props.history.push('/signup/3');
+                          ...this.props.signUpData,
+                          ...this.state,
+                        });
+                        this.props.history.push("/signup/3");
+                      }
+                      else{
+                        message.warn('Phone Number entered is invalid');
+                      }
+                     
+                    } else {
+                      message.warn("Email entered is Invalid");
                     }
-                    else{
-                       message.warn('Username is required');
-                    }
-                   
-                }} style={{ width: "100%" }}>
-                  Next
-                </button>
-           
+                  }
+                }}
+                style={{ width: "100%" }}
+              >
+                Next
+              </button>
             </form>
           </div>
           <div className="other_opts">

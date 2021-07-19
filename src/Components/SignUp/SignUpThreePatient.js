@@ -1,25 +1,53 @@
 import React, { Component } from "react";
-// import './Login.css';
-import { Container, Row, Col } from "reactstrap";
+import { axiosInstance } from "../../utils/axiosInterceptor.js";
 import LoginProto from "../../assests/loginProto.svg";
 import facebookLogo from "../../assests/facebookLogo.svg";
 import googleLogo from "../../assests/googleLogo.svg";
 import { Link } from "react-router-dom";
 import { Set_Signup_Data } from "../../actions/setSignUp";
 import { connect } from "react-redux";
-import { message } from "antd";
-import { axiosInstance } from "../../utils/axiosInterceptor";
+import { message, Select } from "antd";
 import { Spinner } from "react-bootstrap";
+import "./SignUp.css";
 
-class SignUpThree extends Component {
+let Option = Select.Option;
+class SignUpThreePatient extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      specialistof: "",
+      loading: false,
+      doctorList: null,
+      doctorId: "",
       password: "",
       confirmPassword: "",
       btnLoading: false,
     };
+    this.getDoctorList = this.getDoctorList.bind(this);
+  }
+  getDoctorList() {
+    this.setState({
+      ...this.state,
+      loading: true,
+    });
+    axiosInstance
+      .get(`/doctors`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          ...this.state,
+          loading: false,
+          doctorList: res.data,
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          ...this.state,
+          loading: false,
+        });
+      });
+  }
+  componentDidMount() {
+    this.getDoctorList();
   }
   render() {
     return (
@@ -41,12 +69,14 @@ class SignUpThree extends Component {
                 e.preventDefault();
                 if (
                   this.state.password != "" &&
+                  this.state.doctorId != "" &&
                   this.state.password == this.state.confirmPassword
                 ) {
                   this.props
                     .Set_Signup_Data({
                       ...this.props.signUpData,
-                      ...this.state,
+                      password: this.state.password,
+                      doctorId: this.state.doctorId,
                     })
                     .then(() => {
                       if (this.props.signUpData) {
@@ -55,29 +85,30 @@ class SignUpThree extends Component {
                         let password = data.password;
                         let email = data.email;
                         let contact = data.email;
-                        let type = data.type;
+                        let doctorId = data.doctorId;
                         let obj = {
                           username: username,
                           password: password,
                           email: email,
                           contact: contact,
+                          doctor: doctorId,
                         };
-                        console.log(obj);
-                        if (username && password && email && contact) {
+                    
+                        if (
+                          username &&
+                          password &&
+                          email &&
+                          contact &&
+                          doctorId
+                        ) {
                           this.setState({
                             ...this.state,
                             btnLoading: true,
                           });
                           axiosInstance
-                            .post("/register/doctor", {
-                              username: username,
-                              password: password,
-                              email: email,
-                              contact: contact,
-                              department: 1,
-                            })
+                            .post("register/patient", obj)
                             .then((resp) => {
-                              message.warn("Doctor Registered Successfully");
+                              message.warn("Patient Registered Successfully");
                               this.setState({
                                 ...this.state,
                                 btnLoading: false,
@@ -94,6 +125,8 @@ class SignUpThree extends Component {
                         } else {
                           message.warn("All details not provided!");
                         }
+                      } else {
+                        message.warn("All details not provided!");
                       }
                     });
                 } else {
@@ -102,6 +135,7 @@ class SignUpThree extends Component {
               }}
             >
               <input
+                required
                 className="outline_def"
                 type="password"
                 id="password"
@@ -114,6 +148,7 @@ class SignUpThree extends Component {
                 }}
               ></input>
               <input
+                required
                 className="outline_def"
                 type="password"
                 id="password_confirm"
@@ -125,6 +160,51 @@ class SignUpThree extends Component {
                   });
                 }}
               ></input>
+              <Select
+                required
+                onChange={(e) => {
+                  this.setState({
+                    ...this.state,
+                    doctorId: e,
+                  });
+                }}
+                showSearch
+                filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                  }
+                  optionFilterProp="children"
+                placeholder="Select Doctor"
+                style={{
+                  marginBottom: "20px",
+                  borderRadius: "10px",
+                  height: "30px",
+                }}
+              >
+                {this.state.loading ? (
+                  <Option value="">
+                    {" "}
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  </Option>
+                ) : this.state.doctorList ? (
+                  <>
+                    {this.state.doctorList.map((doctor, index) => {
+                      return (
+                        <Option value={doctor.user.id} key={index}>
+                          {doctor.user.username}
+                        </Option>
+                      );
+                    })}
+                  </>
+                ) : (
+                  ""
+                )}
+              </Select>
               <button className="filled" type="submit">
                 {this.state.btnLoading ? (
                   <Spinner
@@ -165,8 +245,9 @@ class SignUpThree extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => ({
   signUpData: state.signUpData.signup_data,
 });
-export default connect(mapStateToProps, { Set_Signup_Data })(SignUpThree);
+export default connect(mapStateToProps, { Set_Signup_Data })(
+  SignUpThreePatient
+);

@@ -87,3 +87,9 @@ input.outline_def{
 input.outline_def:focus{
   border-color:var(--f_button);
 }
+input.outline_def.error{
+  border-color: red;
+}
+input.outline_def.error::after{
+  content: 'Invalid';
+}

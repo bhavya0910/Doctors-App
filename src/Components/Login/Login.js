@@ -84,6 +84,7 @@ class Login extends Component {
               <input
                 className="outline_def"
                 id="userName"
+                required
                 placeholder="username"
                 onChange={(e) => {
                   this.setState({ ...this.state, username: e.target.value });
@@ -92,6 +93,7 @@ class Login extends Component {
               <input
                 className="outline_def"
                 id="password"
+                required
                 placeholder="password"
                 type="password"
                 onChange={(e) => {
