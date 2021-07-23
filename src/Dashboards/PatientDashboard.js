@@ -10,20 +10,34 @@ import { connect } from "react-redux";
 import { Toggle_Logged_In } from "../../src/actions/toggleLogged";
 import LogoSvg from "../assests/logo.svg";
 import Avatar from "@material-ui/core/Avatar";
-
+import CheckUpHistory from '../Components/PatientComponents/CheckUpHistory';
+import Home from "../Components/HomeComponent/Home";
 class PatientDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeMenuItem: "1",
       isPopOverVisible: false,
+      username:null,
+      patientId:null,
     };
     this.setActiveMenu = this.setActiveMenu.bind(this);
   }
   setActiveMenu(num) {
     this.setState({ ...this.state, activeMenuItem: num });
   }
+  componentDidMount(){
+    let patient_username=localStorage.getItem('username');
+    let patient_id=localStorage.getItem('patient_id');
+
+    this.setState({
+      ...this.state,
+      username:patient_username,
+      patientId:patient_id
+    });
+  }
   render() {
+   
     return (
       <div
         className="layout_wrapper"
@@ -182,7 +196,14 @@ class PatientDashboard extends Component {
               </div>
               <div className="stick"></div>
               <div className="profile_disp">
-                <div>Yuvraj Mann</div>
+                <div>
+                {
+                  (this.state.username)?(
+                    this.state.username
+                  ):('')
+                }
+                </div>
+               
                 <Avatar
                   onClick={() => {
                     this.setState({
@@ -191,7 +212,10 @@ class PatientDashboard extends Component {
                     });
                   }}
                 >
-                  YM
+                   {(this.state.username)?(
+                   this.state.username[0]
+                  ):('')}
+                    
                 </Avatar>
               </div>
               <div
@@ -201,7 +225,11 @@ class PatientDashboard extends Component {
                     : "popover_profile"
                 }
               >
-                <div className="menu_item">Yuvraj Mann</div>
+                <div className="menu_item">{
+                  (this.state.username)?(
+                    this.state.username
+                  ):('')
+                }</div>
                 <div className="menu_item" onClick={()=>{
                   this.props.Toggle_Logged_In({
                     loggedIn:false,
@@ -213,8 +241,14 @@ class PatientDashboard extends Component {
                   this.props.history.push('/');
                 }}>Logout</div>
               </div>
+              
             </div>
           </div>
+          <div className="main_layout_content">
+                <Switch>
+                  <Route path="/" key={1}  exact component={CheckUpHistory }></Route>
+                </Switch>
+            </div>
           </div>
         </div>
       </div>

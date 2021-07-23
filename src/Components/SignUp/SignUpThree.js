@@ -54,8 +54,9 @@ class SignUpThree extends Component {
                         let username = data.username;
                         let password = data.password;
                         let email = data.email;
-                        let contact = data.email;
+                        let contact = data.contact;
                         let type = data.type;
+                        let name=data.name;
                         let obj = {
                           username: username,
                           password: password,
@@ -75,9 +76,10 @@ class SignUpThree extends Component {
                               email: email,
                               contact: contact,
                               department: 1,
+                              name:name
                             })
                             .then((resp) => {
-                              message.warn("Doctor Registered Successfully");
+                              message.success("Doctor Registered Successfully");
                               this.setState({
                                 ...this.state,
                                 btnLoading: false,

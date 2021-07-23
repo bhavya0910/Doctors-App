@@ -84,31 +84,35 @@ class SignUpThreePatient extends Component {
                         let username = data.username;
                         let password = data.password;
                         let email = data.email;
-                        let contact = data.email;
+                        let contact = data.contact;
                         let doctorId = data.doctorId;
+                        let name=data.name
                         let obj = {
                           username: username,
                           password: password,
                           email: email,
                           contact: contact,
                           doctor: doctorId,
+                          name:name
                         };
-                    
+                        
                         if (
                           username &&
                           password &&
                           email &&
                           contact &&
-                          doctorId
+                          doctorId&&
+                          name
                         ) {
                           this.setState({
                             ...this.state,
                             btnLoading: true,
                           });
+                        
                           axiosInstance
                             .post("register/patient", obj)
                             .then((resp) => {
-                              message.warn("Patient Registered Successfully");
+                              message.success("Patient Registered Successfully");
                               this.setState({
                                 ...this.state,
                                 btnLoading: false,

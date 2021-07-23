@@ -41,6 +41,7 @@ class Login extends Component {
         else if(res.data.is_patient){
           type="Paient";
           localStorage.setItem("user_type",'Patient');
+          localStorage.setItem("patient_id",res.data.id);
         }
         axiosInstance.interceptors.request.use(function (config) {
           config.headers.auth = {

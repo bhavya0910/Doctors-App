@@ -1,0 +1,12 @@
+.card{
+    padding: 20px;
+    height: 300px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.062);
+}
+.rep_date{
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}

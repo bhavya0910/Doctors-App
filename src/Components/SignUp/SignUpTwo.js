@@ -17,6 +17,7 @@ class SignUpTwo extends Component {
       username: "",
       email: "",
       contact: "",
+      name:""
     };
   }
   render() {
@@ -53,6 +54,18 @@ class SignUpTwo extends Component {
               ></input>
               <input
                 className="outline_def"
+                id="name"
+                required
+                placeholder="Name"
+                onChange={(e) => {
+                  this.setState({
+                    ...this.state,
+                    name: e.target.value,
+                  });
+                }}
+              ></input>
+              <input
+                className="outline_def"
                 id="email"
                 required
                 placeholder="email"
@@ -82,9 +95,10 @@ class SignUpTwo extends Component {
                 type="submit"
                 onClick={() => {
                   if (
-                    this.state.username &&
-                    this.state.contact &&
-                    this.state.email
+                    this.state.username!="" &&
+                    this.state.contact!="" &&
+                    this.state.email!="" && 
+                    this.state.name!=""
                   ) {
                     let isEmailValid = EmailValidator.validate(
                       this.state.email
