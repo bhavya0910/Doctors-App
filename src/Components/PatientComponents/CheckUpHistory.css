@@ -10,3 +10,23 @@
     font-size: 1.1em;
     margin-bottom: 10px;
 }
+.card::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 5px;
+}
+/* Track */
+.card::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  .card::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 3px;
+  }
+  
+  /* Handle on hover */
+  .card::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

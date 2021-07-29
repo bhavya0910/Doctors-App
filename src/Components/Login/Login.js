@@ -11,6 +11,9 @@ import axios from "axios";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import { message } from "antd";
 import { Spinner } from "react-bootstrap";
+
+
+var basic = require('basic-authorization-header');
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +46,9 @@ class Login extends Component {
           localStorage.setItem("user_type",'Patient');
           localStorage.setItem("patient_id",res.data.id);
         }
+        let auth_basic=basic(this.state.username,this.state.password);
         axiosInstance.interceptors.request.use(function (config) {
-          config.headers.auth = {
-            username: this.state.username,
-            password: this.state.password,
-          };
+          config.headers.Authorization = `Basic ${auth_basic}`
           return config;
         });
         this.props.Toggle_Logged_In({
@@ -61,6 +62,7 @@ class Login extends Component {
         console.log(err);
       });
   }
+
   render() {
     return (
       <div className="login_wrapper">

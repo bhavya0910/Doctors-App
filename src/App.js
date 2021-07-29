@@ -17,17 +17,17 @@ import { connect } from "react-redux";
 import { Toggle_Logged_In } from "./actions/toggleLogged";
 import { axiosInstance } from "./utils/axiosInterceptor";
 import { ToggleLoggedIn } from "./actions/types";
+var basic = require('basic-authorization-header');
+
 class App extends Component {
   componentDidMount() {
     let username = localStorage.getItem("username");
     let password = localStorage.getItem("password");
     let type = localStorage.getItem("user_type");
     if (username && password && type) {
+      let auth_basic=btoa(username +':'+password);
       axiosInstance.interceptors.request.use(function (config) {
-        config.headers.auth = {
-          username: username,
-          password: password,
-        };
+        config.headers.Authorization = `Basic ${auth_basic}`
         return config;
       });
 

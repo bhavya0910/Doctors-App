@@ -3068,6 +3068,18 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+basic-auth-token@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/basic-auth-token/-/basic-auth-token-0.4.2.tgz#fc56e66e9dd69c462c3ce5ab7a6b535b35d63a56"
+  integrity sha1-/Fbmbp3WnEYsPOWremtTWzXWOlY=
+
+basic-authorization-header@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/basic-authorization-header/-/basic-authorization-header-0.2.7.tgz#233c9ead813cd2074d7298b25826c086028b770d"
+  integrity sha1-IzyerYE80gdNcpiyWCbAhgKLdw0=
+  dependencies:
+    basic-auth-token "^0.4.2"
+
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"

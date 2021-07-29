@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.16.3",
     "axios": "^0.21.1",
+    "basic-authorization-header": "^0.2.7",
     "bootstrap": "^5.0.1",
     "email-validator": "^2.0.4",
     "moment": "^2.29.1",
