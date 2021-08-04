@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import { Container, Row, Col } from "react-bootstrap";
 import { Skeleton, Divider } from "antd";
+import {Link} from 'react-router-dom';
 import "./xRay.css";
 import axios from "axios";
 
@@ -67,8 +68,10 @@ export default class XRay extends Component {
             this.state.xRayData.map((report) => {
               return (
                 <Col md={4} sm={6} xs={12}>
-                  <div className="xRay_card">
-                    <div className="card_left">
+                  <Container className="xRay_card">
+                    <Row>
+                      <Col md={6}>
+                      <div className="card_left">
                       {/* <img src={report.image}></img> */}
                       <img
                         src={`https://images-na.ssl-images-amazon.com/images/I/71eq9Xhwb1L.png`}
@@ -79,19 +82,26 @@ export default class XRay extends Component {
                         }}
                       ></img>
                     </div>
-                    <div className="card_right">
+                      </Col>
+                      <Col md={6}>
+                      <div className="card_right">
                       <h3>X-RAY</h3>
                       <div>X-Ray Id : {report.report.id}</div>
                       <div>Date : {report.report.date}</div>
                       <div>Category : Legs</div>
+                      <Link to={`/viewXRay/${report.report.id}`}>
                       <button
-                        className="filled"
-                        style={{ width: "80px", marginTop: "15px" }}
-                      >
-                        View
-                      </button>
+                          className="filled"
+                          style={{ width: "80px", marginTop: "15px" }}
+                        >
+                          View
+                        </button>
+                      </Link>
+                       
                     </div>
-                  </div>
+                      </Col>
+                    </Row>
+                  </Container>
                 </Col>
               );
             })

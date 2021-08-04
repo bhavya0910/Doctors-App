@@ -47,19 +47,20 @@ export default class prescription extends Component {
         console.log(this.state);
         return (
             <Container>
-                <Row>
+                <Row className="header_row">
                     <h4>
                         Prescriptions
                     </h4>
+                   
                 </Row>
-                <Divider></Divider>
+               
                 <Row>
                 {
                     (!this.state.loading&&this.state.reports)?(
                         this.state.reports.map((report)=>{
                      
                         return(
-                            <Col md={4} sm={6} xs={12}>
+                            <Col md={6} sm={12} xs={12}>
                             <div className="card">
                                 <div className="rep_date">
                                     DATE : {report.date}

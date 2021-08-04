@@ -15,6 +15,14 @@ import Home from "../Components/HomeComponent/Home";
 import Prescription from "../Components/Prescription/prescription";
 import Schedule from "../Components/Schedule/Schedule";
 import XRay from "../Components/X-Ray/xRay";
+import XRayView from '../Components/X-Ray/xRayView';
+import Profile from '.././assests/profile.svg';
+import Appointment from '.././assests/appointment.svg';
+import Prescriptions from '../assests/prescription.svg';
+import Documents from '../assests/document.svg';
+import Settings from '../assests/settings.svg';
+import Stats from "../Components/StatsDisp/stats";
+
 class PatientDashboard extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +69,12 @@ class PatientDashboard extends Component {
                   this.setState({ ...this.state, activeMenuItem: 1 });
                 }}
               >
-                CHECKUP HISTORY
+                <span className="content_rapper">
+                <img src={Profile}></img><span>
+                PROFILE
+                  </span>
+                </span>
+               
               </div>
             </Link>
             <Link to="/xRays">
@@ -74,7 +87,12 @@ class PatientDashboard extends Component {
                   this.setState({ ...this.state, activeMenuItem: 2 });
                 }}
               >
-                X-RAY/SCAN
+                 <span className="content_rapper">
+                <img src={Appointment}></img><span>
+                APPOINTMENTS
+                  </span>
+                </span>
+                
               </div>
             </Link>
 
@@ -88,7 +106,11 @@ class PatientDashboard extends Component {
                   this.setState({ ...this.state, activeMenuItem: 3 });
                 }}
               >
-                PRESCRIPTION
+                 <span className="content_rapper">
+                <img src={Prescriptions}></img><span>
+                PRESCRIPTIONS
+                  </span>
+                </span>
               </div>
             </Link>
 
@@ -101,21 +123,12 @@ class PatientDashboard extends Component {
                 this.setState({ ...this.state, activeMenuItem: 4 });
               }}
             >
-              APPOINTMENTS
+               <span className="content_rapper">
+                <img src={Documents}></img><span>
+                DOCUMENTS
+                  </span>
+                </span>
             </div>
-            <Link to="/schedule">
-              <div
-                tabIndex={1}
-                className={`schedule${
-                  this.state.activeMenuItem == 5 ? " active" : ""
-                }`}
-                onClick={() => {
-                  this.setState({ ...this.state, activeMenuItem: 5 });
-                }}
-              >
-                SCHEDULE
-              </div>
-            </Link>
             <div
               tabIndex={1}
               className={`settings${
@@ -125,19 +138,14 @@ class PatientDashboard extends Component {
                 this.setState({ ...this.state, activeMenuItem: 6 });
               }}
             >
-              SETTINGS
+<span className="content_rapper">
+                <img src={Settings}></img><span>
+                SETTINGS
+                  </span>
+                </span>
+              
             </div>
-            <div
-              tabIndex={1}
-              className={`privacy${
-                this.state.activeMenuItem == 7 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 7 });
-              }}
-            >
-              PRIVACY POLICY
-            </div>
+        
           </div>
         </div>
         <div className="right_content_layout">
@@ -235,6 +243,12 @@ class PatientDashboard extends Component {
               </div>
             </div>
           </div>
+          <div className="stats_disp">
+            <Stats
+              setActiveMenu={this.setActiveMenu}
+              activeMenuItem={this.state.activeMenuItem}
+            ></Stats>
+          </div>
           <div className="main_layout_content">
             <Switch>
               <Route path="/" key={1} exact component={CheckUpHistory}></Route>
@@ -251,6 +265,7 @@ class PatientDashboard extends Component {
                 component={Schedule}
               ></Route>
               <Route path="/xRays" key={3} exact component={XRay}></Route>
+              <Route path="/viewXRay/:xRayId" key={4} exact  render={(props) => (<XRayView history={props.history}></XRayView>)} ></Route>
             </Switch>
           </div>
         </div>

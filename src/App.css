@@ -93,3 +93,12 @@ input.outline_def.error{
 input.outline_def.error::after{
   content: 'Invalid';
 }
+.content_rapper{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+.content_rapper img{
+  width: 18px;
+  margin-right: 12px;
+}
