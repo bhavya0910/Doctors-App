@@ -17,3 +17,22 @@
     font-weight: 600;
     color:rgba(0, 0, 0, 0.774)
 }
+.x_key{
+    color: #172578;
+    font-weight: 600;
+    font-size: 1.2em;
+    padding-right: 18px;
+}
+.x_val{
+    font-weight: 600;
+    padding-left: 18px;
+}
+.val_wrapper{
+    padding:20px;
+    margin-top: 20px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.158);
+}
+.card_right{
+    margin-top: 15px;
+}

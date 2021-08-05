@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import { Container, Row, Col } from "react-bootstrap";
 import { Skeleton, Divider } from "antd";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./xRay.css";
 import axios from "axios";
 
@@ -67,38 +67,32 @@ export default class XRay extends Component {
           {!this.state.loading && this.state.xRayData ? (
             this.state.xRayData.map((report) => {
               return (
-                <Col md={4} sm={6} xs={12}>
+                <Col md={12} sm={12} xs={12}>
                   <Container className="xRay_card">
                     <Row>
-                      <Col md={6}>
-                      <div className="card_left">
-                      {/* <img src={report.image}></img> */}
-                      <img
-                        src={`https://images-na.ssl-images-amazon.com/images/I/71eq9Xhwb1L.png`}
-                        style={{
-                          width: "150px",
-                          height: "100%",
-                          marginRight: "30px",
-                        }}
-                      ></img>
-                    </div>
+                      <Col md={4}>
+                        <div className="card_left">
+                          {/* <img src={report.image}></img> */}
+                          <img
+                            src={`https://images-na.ssl-images-amazon.com/images/I/71eq9Xhwb1L.png`}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              marginRight: "30px",
+                            }}
+                          ></img>
+                        </div>
                       </Col>
-                      <Col md={6}>
-                      <div className="card_right">
-                      <h3>X-RAY</h3>
-                      <div>X-Ray Id : {report.report.id}</div>
-                      <div>Date : {report.report.date}</div>
-                      <div>Category : Legs</div>
-                      <Link to={`/viewXRay/${report.report.id}`}>
-                      <button
-                          className="filled"
-                          style={{ width: "80px", marginTop: "15px" }}
-                        >
-                          View
-                        </button>
-                      </Link>
-                       
-                    </div>
+                      <Col md={8}>
+                        <div className="card_right">
+                          <h3>X-RAY</h3>
+                          <div><span className="x_key">X-Ray Id</span> : <span className="x_val">{report.report.id}</span></div>
+                          <div><span className="x_key">Date</span> : <span className="x_val">{report.report.date}</span></div>
+                          <div><span className="x_key">Category</span> : <span className="x_val">{report.report.category}</span></div>
+                          <div className="val_wrapper">
+                            {report.report.data}
+                          </div>
+                        </div>
                       </Col>
                     </Row>
                   </Container>

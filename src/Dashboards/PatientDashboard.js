@@ -15,12 +15,12 @@ import Home from "../Components/HomeComponent/Home";
 import Prescription from "../Components/Prescription/prescription";
 import Schedule from "../Components/Schedule/Schedule";
 import XRay from "../Components/X-Ray/xRay";
-import XRayView from '../Components/X-Ray/xRayView';
-import Profile from '.././assests/profile.svg';
-import Appointment from '.././assests/appointment.svg';
-import Prescriptions from '../assests/prescription.svg';
-import Documents from '../assests/document.svg';
-import Settings from '../assests/settings.svg';
+import XRayView from "../Components/X-Ray/xRayView";
+import Profile from ".././assests/profile.svg";
+import Appointment from ".././assests/appointment.svg";
+import Prescriptions from "../assests/prescription.svg";
+import Documents from "../assests/document.svg";
+import Settings from "../assests/settings.svg";
 import Stats from "../Components/StatsDisp/stats";
 
 class PatientDashboard extends Component {
@@ -70,11 +70,9 @@ class PatientDashboard extends Component {
                 }}
               >
                 <span className="content_rapper">
-                <img src={Profile}></img><span>
-                PROFILE
-                  </span>
+                  <img src={Profile}></img>
+                  <span>PROFILE</span>
                 </span>
-               
               </div>
             </Link>
             <Link to="/xRays">
@@ -87,12 +85,10 @@ class PatientDashboard extends Component {
                   this.setState({ ...this.state, activeMenuItem: 2 });
                 }}
               >
-                 <span className="content_rapper">
-                <img src={Appointment}></img><span>
-                APPOINTMENTS
-                  </span>
+                <span className="content_rapper">
+                  <img src={Appointment}></img>
+                  <span>APPOINTMENTS</span>
                 </span>
-                
               </div>
             </Link>
 
@@ -106,29 +102,29 @@ class PatientDashboard extends Component {
                   this.setState({ ...this.state, activeMenuItem: 3 });
                 }}
               >
-                 <span className="content_rapper">
-                <img src={Prescriptions}></img><span>
-                PRESCRIPTIONS
-                  </span>
+                <span className="content_rapper">
+                  <img src={Prescriptions}></img>
+                  <span>PRESCRIPTIONS</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/xRays">
+              <div
+                tabIndex={1}
+                className={`appointments${
+                  this.state.activeMenuItem == 4 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 4 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img src={Documents}></img>
+                  <span>DOCUMENTS</span>
                 </span>
               </div>
             </Link>
 
-            <div
-              tabIndex={1}
-              className={`appointments${
-                this.state.activeMenuItem == 4 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 4 });
-              }}
-            >
-               <span className="content_rapper">
-                <img src={Documents}></img><span>
-                DOCUMENTS
-                  </span>
-                </span>
-            </div>
             <div
               tabIndex={1}
               className={`settings${
@@ -138,14 +134,11 @@ class PatientDashboard extends Component {
                 this.setState({ ...this.state, activeMenuItem: 6 });
               }}
             >
-<span className="content_rapper">
-                <img src={Settings}></img><span>
-                SETTINGS
-                  </span>
-                </span>
-              
+              <span className="content_rapper">
+                <img src={Settings}></img>
+                <span>SETTINGS</span>
+              </span>
             </div>
-        
           </div>
         </div>
         <div className="right_content_layout">
@@ -265,7 +258,14 @@ class PatientDashboard extends Component {
                 component={Schedule}
               ></Route>
               <Route path="/xRays" key={3} exact component={XRay}></Route>
-              <Route path="/viewXRay/:xRayId" key={4} exact  render={(props) => (<XRayView history={props.history}></XRayView>)} ></Route>
+              <Route
+                path="/viewXRay/:xRayId"
+                key={4}
+                exact
+                render={(props) => (
+                  <XRayView history={props.history}></XRayView>
+                )}
+              ></Route>
             </Switch>
           </div>
         </div>
