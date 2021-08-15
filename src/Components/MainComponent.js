@@ -25,6 +25,7 @@ import Schedule from "./Schedule/Schedule";
 import LogoSvg from "../assests/logo.svg";
 import { connect } from "react-redux";
 import { Toggle_Logged_In } from "../actions/toggleLogged";
+import ProfileView from "./ProfileView/ProfileView.js";
 
 class MainComponent extends Component {
   constructor(props) {
@@ -227,8 +228,14 @@ class MainComponent extends Component {
                <Route
                 path="/connections"
                 exact
-                key={3}
+                key={4}
                 component={Connections}
+              ></Route>
+              <Route
+                path="/profileView"
+                exact
+                key={5}
+                component={ProfileView}
               ></Route>
             </Switch>
           </div>

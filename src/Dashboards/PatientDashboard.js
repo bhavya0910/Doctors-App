@@ -22,6 +22,7 @@ import Prescriptions from "../assests/prescription.svg";
 import Documents from "../assests/document.svg";
 import Settings from "../assests/settings.svg";
 import Stats from "../Components/StatsDisp/stats";
+import ProfileView from "../Components/ProfileView/ProfileView";
 
 class PatientDashboard extends Component {
   constructor(props) {
@@ -75,7 +76,7 @@ class PatientDashboard extends Component {
                 </span>
               </div>
             </Link>
-            <Link to="/xRays">
+            <Link to="/appointment">
               <div
                 tabIndex={1}
                 className={`x_ray${
@@ -215,9 +216,12 @@ class PatientDashboard extends Component {
                     : "popover_profile"
                 }
               >
+                <Link to="/profile">
                 <div className="menu_item">
                   {this.state.username ? this.state.username : ""}
                 </div>
+                </Link>
+               
                 <div
                   className="menu_item"
                   onClick={() => {
@@ -252,7 +256,7 @@ class PatientDashboard extends Component {
                 component={Prescription}
               ></Route>
               <Route
-                path="/schedule"
+                path="/appointment"
                 key={2}
                 exact
                 component={Schedule}
@@ -266,6 +270,13 @@ class PatientDashboard extends Component {
                   <XRayView history={props.history}></XRayView>
                 )}
               ></Route>
+              <Route path="/profile"  key={4}
+                exact
+                render={(props) => (
+                  <ProfileView history={props.history}></ProfileView>
+                )}>
+
+                </Route>
             </Switch>
           </div>
         </div>

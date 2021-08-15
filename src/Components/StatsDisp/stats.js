@@ -55,7 +55,7 @@ class Stats extends Component {
             </Link>
           </Col>
           <Col md="3" sm={6} style={{ marginBottom: "20px" }}>
-            <Link to="/schedule">
+            <Link to="/prescription">
               <div
                 onClick={() => {
                   this.props.setActiveMenu(3);
@@ -74,16 +74,21 @@ class Stats extends Component {
             </Link>
           </Col>
           <Col md="3" sm={6} style={{ marginBottom: "20px" }}>
+          <Link to="/xRays">
             <div
               className={
                 this.props.activeMenuItem == 4 ? "m_card card_active" : "m_card"
               }
+              onClick={() => {
+                this.props.setActiveMenu(4);
+              }}
             >
               <div className="stat_name">Documents</div>
               <div className="stat_val">
                 <img src={Documents}></img>
               </div>
             </div>
+            </Link>
           </Col>
         </Row>
       </Container>

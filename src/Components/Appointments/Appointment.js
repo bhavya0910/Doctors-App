@@ -24,7 +24,7 @@ class Appointment extends Component {
             selectable={true}
             events={[
               {
-                'title': 'Birthday Party 2',
+                'title': 'Birthday Party',
                 'start': new Date(2021, 6, 3, 7, 0, 0),
                 'end': new Date(2021, 6, 3, 10, 30, 0)
               },
