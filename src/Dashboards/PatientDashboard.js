@@ -72,7 +72,7 @@ class PatientDashboard extends Component {
               >
                 <span className="content_rapper">
                   <img src={Profile}></img>
-                  <span>PROFILE</span>
+                  <span>PROFILEE</span>
                 </span>
               </div>
             </Link>
