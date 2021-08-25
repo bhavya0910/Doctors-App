@@ -1,113 +1,133 @@
-import React, { Component } from 'react'
+/*import React, { Component } from 'react'
 import TableComponent from '../TableComponent/TableComponent.js';
 import './connections.css';
 export default class connections extends Component {
-    dataSource= [
-        {
-         key: '1',
-         ticket:'Yuvraj Mann',
-         last_appointment:'12/11/2013 6:30',
-         new_appointment:'13/11/2015 5:30',
-         priority:"High"
-        },
-        {
-            key: '2',
-            ticket:'Yuvraj Mann',
-            last_appointment:'12/11/2013 6:30',
-            new_appointment:'13/11/2015 5:30',
-            priority:"High"
-           },
-           {
-            key: '3',
-            ticket:'Yuvraj Mann',
-            last_appointment:'12/11/2013 6:30',
-            new_appointment:'13/11/2015 5:30',
-            priority:"Normal"
-           },
-           {
-            key: '4',
-            ticket:'Yuvraj Mann',
-            last_appointment:'12/11/2013 6:30',
-            new_appointment:'13/11/2015 5:30',
-            priority:"High"
-           },
-           {
-            key: '5',
-            ticket:'Yuvraj Mann',
-            last_appointment:'12/11/2013 6:30',
-            new_appointment:'13/11/2015 5:30',
-            priority:"Low"
-           },
-           {
-            key: '1',
-            ticket:'Yuvraj Mann',
-            last_appointment:'12/11/2013 6:30',
-            new_appointment:'13/11/2015 5:30',
-            priority:"High"
-           },
-           {
-               key: '2',
-               ticket:'Yuvraj Mann',
-               last_appointment:'12/11/2013 6:30',
-               new_appointment:'13/11/2015 5:30',
-               priority:"High"
-              },
-              {
-               key: '3',
-               ticket:'Yuvraj Mann',
-               last_appointment:'12/11/2013 6:30',
-               new_appointment:'13/11/2015 5:30',
-               priority:"Normal"
-              },
-              {
-               key: '4',
-               ticket:'Yuvraj Mann',
-               last_appointment:'12/11/2013 6:30',
-               new_appointment:'13/11/2015 5:30',
-               priority:"High"
-              },
-              {
-               key: '5',
-               ticket:'Yuvraj Mann',
-               last_appointment:'12/11/2013 6:30',
-               new_appointment:'13/11/2015 5:30',
-               priority:"Low"
-              },
-      ];
-
-    columns=[
-        {
-          title: 'Ticket Details',
-          dataIndex: 'ticket',
-          key: 'ticket',
-        },
-        {
-          title: 'Last Appointment',
-          dataIndex: 'last_appointment',
-          key: 'last_appointment',
-        },
-        {
-          title: 'New Appointment',
-          dataIndex: 'new_appointment',
-          key: 'new_appointment',
-        },
-        {
-            title: 'Priority',
-            dataIndex: 'priority',
-            key: 'priority',
-          },
-          {
-            title: '',
-            dataIndex: 'opts',
-            key: 'opts',
-          },
-      ];
+   
     render() {
         return (
-            <div className="connections_wrapper">
-                <div className="header_c">Doctors</div>
-                  <TableComponent dataSource={this.dataSource} columns={this.columns}></TableComponent>
-            </div>
+           <div>
+            connections 
+           </div>
         )
     }
+}
+*/
+/*
+import React from 'react';
+import Table from 'react-bootstrap/Table'
+  
+  
+  
+export default function TableExample() {
+  return (
+    <>
+  
+<h3>Default Variant Small Size Theme Table</h3>
+  
+<Table striped bordered hover size="sm">
+  <thead>
+    <tr>
+      <th width="170">Student Name</th>
+      <th width="170">Reg.no</th>
+      <th width="170">Course</th>
+      <th width="870">City Name</th>
+      <th width="1950">Percentage</th>
+  
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rakesh</td>
+      <td>1123</td>
+      <td>CSE</td>
+      <td>Mumbai</td>
+      <td>86.9%</td>
+  
+    </tr>
+    <tr>
+      <td>Jackson</td>
+      <td>1124</td>
+      <td>ECE</td>
+      <td>Hyderabad</td>
+      <td>72.4%</td>
+  
+    </tr>
+    <tr>
+      <td>Keshav</td>
+      <td>1124</td>
+      <td>CSE</td>
+      <td>Chennai</td>
+      <td>88%</td>
+  
+    </tr>
+    <tr>
+      <td>Neilesh Jain</td>
+      <td>1125</td>
+      <td>EEE</td>
+      <td>Gwalior</td>
+      <td>66.9%</td>
+  
+    </tr>
+    <tr>
+      <td>Akbar sheikh</td>
+      <td>1126</td>
+      <td>Mechanical</td>
+      <td>Indore</td>
+      <td>96.5%</td>
+  
+    </tr>
+    <tr>
+      <td>Sarita</td>
+      <td>1127</td>
+      <td>CSE</td>
+      <td>Delhi</td>
+      <td>96.9%</td>
+  
+    </tr>
+  
+  </tbody>
+</Table>
+  
+ 
+    </>
+  );
+}*/
+import React from 'react'
+import "antd/dist/antd.css";
+import { Table } from 'antd';
+import { Fullscreen, Height } from '@material-ui/icons';
+  
+export default function App() {
+  
+    // Sample Data for the table
+    const dataSource = [
+        { key: '1', TicketDetails: 'Gourav', Specialist: 'orthologist' },
+        { key: '2', TicketDetails: 'Kartik',  Specialist: 'orthologist' },
+        { key: '3', TicketDetails: 'Madhu',  Specialist: 'orthologist' },
+        { key: '4', TicketDetails: 'Karu',  Specialist: 'orthologist'  },
+        { key: '5', TicketDetails: 'Dinesh',  Specialist: 'orthologist'  },
+    ];
+  
+    // Sample Columns data
+    const columns = [
+        {
+            title: 'TicketDetails',
+            dataIndex: 'TicketDetails',
+            key: 'TicketDetails',
+        },
+        {
+            title: 'Specialist',
+            dataIndex: 'Specialist',
+            key: 'Specialist',
+        },
+    ];
+  
+    return (
+        <div style={{
+            display: 'block', width: 1500, padding: 50 ,Height : 1000
+        }}>
+            <h4>Doctors</h4>
+            <Table dataSource={dataSource} columns={columns} />
+        </div>
+    );
 }

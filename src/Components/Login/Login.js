@@ -40,6 +40,7 @@ class Login extends Component {
         if(res.data.is_doctor){
           type="Doctor";
           localStorage.setItem("user_type",'Doctor');
+          localStorage.setItem("Doctor_id",res.data.id);
         }
         else if(res.data.is_patient){
           type="Paient";
