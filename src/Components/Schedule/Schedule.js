@@ -38,15 +38,20 @@ class Appointment extends Component {
         let arr = resp.data;
         console.log(arr.length);
         for (let i = 0; i < arr.length; ++i) {
+          console.log(arr);
           let date = arr[i].date;
-          let array = date.toString().split["_"];
-          
-          appointments.push({
-            title: arr[i].id,
-            start: new Date(array[0], array[1], array[2], 0, 0, 0),
-            end: new Date(array[0], array[1], array[2], 0, 0, 0),
-          });
-          
+          console.log(date);
+          let array = date.toString().split('-');
+          console.log(array);
+          if(array){
+            appointments.push({
+              title: arr[i].id,
+              start: new Date(array[0], array[1], array[2], 0, 0, 0),
+              end: new Date(array[0], array[1], array[2], 0, 0, 0),
+            });
+          }
+         
+         
         }
         
         this.setState({
@@ -56,6 +61,7 @@ class Appointment extends Component {
         });
       })
       .catch((err) => {
+        console.log(err);
         this.setState({
           ...this.state,
           loading: false,
@@ -66,7 +72,7 @@ class Appointment extends Component {
     console.log(this.state.appointmentData);
     return (
       <div className="wrapper">
-        {this.state.loading ? (
+        {this.state.loading||!this.state.appointmentData ? (
           <Skeleton active={true}></Skeleton>
         ) : (
           <>
@@ -80,11 +86,9 @@ class Appointment extends Component {
                 views={["month", "week"]}
                 localizer={localizer}
                 step={60}
-                onSelectSlot={(e) => {
-                  console.log(e);
-                }}
+              
                 selectable={true}
-                events={[]}
+                events={this.state.appointmentData}
               />
             </div>
           </>
