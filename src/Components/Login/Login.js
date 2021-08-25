@@ -46,7 +46,8 @@ class Login extends Component {
           localStorage.setItem("user_type",'Patient');
           localStorage.setItem("patient_id",res.data.id);
         }
-        let auth_basic=basic(this.state.username,this.state.password);
+
+        let auth_basic=Buffer.from(`${this.state.username}:${this.state.password}`, 'utf8').toString('base64');
         axiosInstance.interceptors.request.use(function (config) {
           config.headers.Authorization = `Basic ${auth_basic}`
           return config;
