@@ -95,3 +95,4 @@ class Appointment extends Component {
   }
 }
 export default Appointment;
+
