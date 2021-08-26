@@ -49,11 +49,8 @@ class Appointment extends Component {
               start: new Date(array[0], array[1], array[2], 0, 0, 0),
               end: new Date(array[0], array[1], array[2], 0, 0, 0),
             });
-          }
-         
-         
+          }  
         }
-        
         this.setState({
           ...this.state,
           loading: false,
@@ -69,10 +66,10 @@ class Appointment extends Component {
       });
   }
   render() {
-    console.log(this.state.appointmentData);
+   
     return (
       <div className="wrapper">
-        {this.state.loading||!this.state.appointmentData ? (
+        {this.state.loading|| !this.state.appointmentData ? (
           <Skeleton active={true}></Skeleton>
         ) : (
           <>
