@@ -95,7 +95,7 @@ export default function TableExample() {
 import React from 'react'
 import "antd/dist/antd.css";
 import { Table } from 'antd';
-import { Fullscreen, Height } from '@material-ui/icons';
+
   
 export default function App() {
   

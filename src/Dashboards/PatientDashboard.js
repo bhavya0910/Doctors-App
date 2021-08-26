@@ -257,7 +257,7 @@ class PatientDashboard extends Component {
               ></Route>
               <Route
                 path="/appointment"
-                key={2}
+                key={3}
                 exact
                 component={Schedule}
               ></Route>
