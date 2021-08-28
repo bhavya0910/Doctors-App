@@ -27,8 +27,8 @@ import Connections from "../assests/connections.svg";
 import Stats from "../Components/StatsDisp/Dstats";
 import ProfileView from "../Components/ProfileView/ProfileView";
 import DoctorView from "../Components/ProfileView/DoctorView";
-import connections from "../Components/Connections/connections";
-
+import connections from "../Components/Connections/Connections";
+import Dappointments from "../Components/Appointments/Dappointments";
 
 class PatientDashboard extends Component {
   constructor(props) {
@@ -82,10 +82,10 @@ class PatientDashboard extends Component {
                 </span>
               </div>
             </Link>
-            <Link to="/appointment">
+            <Link to="/Dappointments">
               <div
                 tabIndex={1}
-                className={`appointment${
+                className={`Dappointments${
                   this.state.activeMenuItem == 2 ? " active" : ""
                 }`}
                 onClick={() => {
@@ -102,7 +102,7 @@ class PatientDashboard extends Component {
             <Link to="/schedule">
               <div
                 tabIndex={1}
-                className={`schedule${
+                className={`Dappointments${
                   this.state.activeMenuItem == 3 ? " active" : ""
                 }`}
                 onClick={() => {
@@ -256,16 +256,16 @@ class PatientDashboard extends Component {
             <Switch>
               <Route path="/" key={1} exact component={Dhome}></Route>
               <Route
-                path="/appointment"
+                path="/Dappointments"
                 key={2}
                 exact
-                component={Dschedule}
+                component={Dappointments}
               ></Route>
               <Route
                 path="/schedule"
                 key={3}
                 exact
-                component={Dschedule}
+                component={Dappointments}
               ></Route>
               
               <Route path="/connections" key={4} exact component={connections}></Route>
