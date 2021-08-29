@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Components/Login/Login.js";
 import SignUp from "./Components/SignUp/SignUp.js";
 import SignUpTwo from "./Components/SignUp/SignUpTwo";
+import ProfileView from "./Components/ProfileView/ProfileView";
 import SignUpThree from "./Components/SignUp/SignUpThree";
 import SignUpThreePatient from "./Components/SignUp/SignUpThreePatient";
 import { connect } from "react-redux";
@@ -50,6 +51,9 @@ class App extends Component {
             <Switch>
               <Route path="/" exact>
                 <Login></Login>
+              </Route>
+              <Route path="/profile" exact>
+                <ProfileView></ProfileView>
               </Route>
               <Route path="/signup/1" exact>
                 <SignUp></SignUp>

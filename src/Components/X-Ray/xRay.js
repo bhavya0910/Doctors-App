@@ -60,7 +60,7 @@ export default class XRay extends Component {
     return (
       <Container>
         <Row>
-          <h4>X-RAY's/SCAN's</h4>
+          <h4>X-RAYY's/SCAN's</h4>
         </Row>
         <Divider></Divider>
         <Row>

@@ -32,7 +32,7 @@ export default function XRayView(props) {
         </Col>
         <Col sm={12} md={7}>
           <div>
-            <div>X-RAY ID:</div>
+            <div>X-RAYY ID:</div>
             <div>DATE:</div>
             <div>TIME:</div>
             <div>CATEGORY:</div>

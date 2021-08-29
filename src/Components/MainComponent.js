@@ -20,7 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Stats from "./StatsDisp/stats.js";
 import Home from "./HomeComponent/Home";
 import Appointment from "./Appointments/Appointment.js";
-import Connections from "./Connections/connections.js";
+import connections from "./Connections/Connections.js";
 import Schedule from "./Schedule/Schedule";
 import LogoSvg from "../assests/logo.svg";
 import { connect } from "react-redux";
@@ -229,7 +229,7 @@ class MainComponent extends Component {
                 path="/connections"
                 exact
                 key={4}
-                component={Connections}
+                component={connections}
               ></Route>
               <Route
                 path="/profileView"

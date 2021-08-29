@@ -1,6 +1,8 @@
-.card{
+.carde{
     padding: 20px;
-    height: 300px;
+    height: 180px;
+    width: 150px;
+    margin-left: 0px;
     margin-bottom: 20px;
     overflow-y: auto;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.062);
