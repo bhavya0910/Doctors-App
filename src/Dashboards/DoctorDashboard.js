@@ -11,6 +11,7 @@ import { Toggle_Logged_In } from "../../src/actions/toggleLogged";
 import LogoSvg from "../assests/logo.svg";
 import Avatar from "@material-ui/core/Avatar";
 import CheckUpHistory from "../Components/PatientComponents/CheckUpHistory";
+import Check from "../Components/PatientComponents/Check";
 import Home from "../Components/HomeComponent/Home";
 import Dhome from "../Components/HomeComponent/Dhome";
 import Prescription from "../Components/Prescription/prescription";
@@ -68,6 +69,7 @@ class PatientDashboard extends Component {
           <div className="sider_menu">
             <Link to="/">
               <div
+              ////patientProfile/id
                 tabIndex={1}
                 className={`Dhome${
                   this.state.activeMenuItem == 1 ? " active" : ""
@@ -275,8 +277,9 @@ class PatientDashboard extends Component {
                 render={(props) => (
                   <DoctorView history={props.history}></DoctorView>
                 )}></Route>
-                <Route path="/patientProfile/patientId" exact render={(props)=>{
-                    <CheckUpHistory history={props.history}></CheckUpHistory>
+                <Route path="/patientList/: patientId" exact render={(props)=>{
+                  
+                    <Check history={props.history}></Check>
                 }}></Route>
             </Switch>
           </div>

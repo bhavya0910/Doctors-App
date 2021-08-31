@@ -1,87 +1,3 @@
-/*import React, { Component , useState, useEffect } from 'react';
-import {Container,Row,Col, Link } from 'react-bootstrap';
-import {axiosInstance} from '../../utils/axiosInterceptor';
-import {Skeleton,Divider ,Avatar, message } from 'antd';
-import './CheckUpHistory.css';
-
-
-import "../ProfileView/ProfileView.css";
-
-import axios from "axios";
-
-import { Spinner } from "react-bootstrap";
-
-export default class CheckUpHistory extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            reports:null,
-            loading:false,
-        }
-    }
-   
-    fetchReports(patient_id){
-        this.setState({
-            ...this.state,loading:true,
-        });
-        axiosInstance.get(`/reports/${patient_id}`).then((res)=>{
-            this.setState({
-                ...this.state,reports:res.data,loading:false,
-            });
-        })
-        .catch((err)=>{
-            console.log(err);
-            this.setState({
-                ...this.state,loading:false,
-            })
-        })
-    }
-    componentDidMount(){
-        let patient_id=localStorage.getItem('patient_id');
-        this.fetchReports(patient_id);
-    }
-    render() {
-        console.log(this.state);
-        return (
-           /* <Container>
-                <Row>
-                    <h4>
-                        CheckUp History
-                    </h4>
-                </Row>
-                <Divider></Divider>
-                <Row>
-                {
-                    (!this.state.loading&&this.state.reports)?(
-                        this.state.reports.map((report)=>{
-                     
-                        return(
-                            <Col md={4} sm={6} xs={12}>
-                            <div className="card">
-                                <div className="rep_date">
-                                    DATE : {report.date}
-                                </div>
-                                <div className="rep_data">
-                                    {report.data}
-                                </div>
-                            </div>
-                        </Col> 
-                        )
-                      
-                        })
-                                   
-                    ):(
-                        <Skeleton active={true}></Skeleton>
-                    )
-                }
-                </Row>
-            </Container>*/
-           /* <div>
-                hlo
-            </div>
-        )
-    }
-}*/
 import React, { useState, useEffect } from "react";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import "../ProfileView/ProfileView.css";
@@ -99,6 +15,7 @@ import moment from "moment";
 import { Calendar, momentLocalizer,Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../Appointments/Appointment.css';
+
 
 // import FileDroper from './FileDroper';
 const localizer = momentLocalizer(moment);
@@ -150,10 +67,11 @@ const[appointmentData ,setappointment] = useState(null);
     readURL(newPic);
   };
 
-  let fetchProfile = () => {
+  let fetchProfile = (props) => {
     setLoading(true);
-    // let patient_id=props.history.location.pathname.split('/')[2];
-    let patient_id = localStorage.getItem("patient_id");
+   // let patient_id= props.history.location.pathname.split('/')[2];
+   let patient_id = localStorage.getItem("patient_id");
+  // console.log('hi');
     axiosInstance
       .get(`/patient/${patient_id}`)
       .then((profile) => {
@@ -177,6 +95,7 @@ const[appointmentData ,setappointment] = useState(null);
   };
   let fetchhistory = () => {
     setLoading(true);
+   // let patient_id= props.history.location.pathname.split('/')[2];
     let patient_id = localStorage.getItem("patient_id");
     axiosInstance
       .get(`/reports/${patient_id}`)
@@ -191,6 +110,7 @@ const[appointmentData ,setappointment] = useState(null);
   };
   let fetchxray = () => {
     setLoading(true);
+  //  let patient_id= props.history.location.pathname.split('/')[2];
     let patient_id = localStorage.getItem("patient_id");
     axiosInstance
       .get(`/xrays/${patient_id}`)

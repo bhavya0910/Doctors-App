@@ -14,6 +14,13 @@ class Connections extends Component {
   }
   columns = [
     {
+     
+      title: '',
+      width: '2%',
+      dataIndex: 'https://st2.depositphotos.com/4226061/9064/v/950/depositphotos_90647784-stock-illustration-male-doctor-avatar-icon.jpg',
+      render:  () => <img src={`https://st2.depositphotos.com/4226061/9064/v/950/depositphotos_90647784-stock-illustration-male-doctor-avatar-icon.jpg`} style ={{width:"50px", height:"50px"}} />
+},
+    {
       title: "Ticket Details",
       dataIndex: "ticket",
       key: "ticket",

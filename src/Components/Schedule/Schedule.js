@@ -76,7 +76,7 @@ class Appointment extends Component {
             <div className="left_appointment_content">
               <button className="type1">Add Appointment</button>
               <button className="type1">Add Remainder</button>
-              <button className="type1">Add Note</button>
+             
             </div>
             <div style={{ height: 700 }} className="right_appointment_content">
               <Calendar

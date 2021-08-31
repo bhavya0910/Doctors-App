@@ -54,7 +54,7 @@ class Appointment extends Component {
           <Skeleton active={true}></Skeleton>
         ):(<div className="wrapper">
         <div className="left_appointment_content">
-          <button className="type1">Add Appointmentss</button>
+          <button className="type1">Add Appointments</button>
           </div>
         <div style={{ height: 700 }} className="right_appointment_content">
           
