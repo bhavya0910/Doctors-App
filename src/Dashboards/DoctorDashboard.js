@@ -27,7 +27,7 @@ import Connections from "../assests/connections.svg";
 import Stats from "../Components/StatsDisp/Dstats";
 import ProfileView from "../Components/ProfileView/ProfileView";
 import DoctorView from "../Components/ProfileView/DoctorView";
-import connections from "../Components/Connections/Connections";
+import connections from "../Components/Connections/connection";
 import Dappointments from "../Components/Appointments/Dappointments";
 
 class PatientDashboard extends Component {
@@ -275,6 +275,9 @@ class PatientDashboard extends Component {
                 render={(props) => (
                   <DoctorView history={props.history}></DoctorView>
                 )}></Route>
+                <Route path="/patientProfile/patientId" exact render={(props)=>{
+                    <CheckUpHistory history={props.history}></CheckUpHistory>
+                }}></Route>
             </Switch>
           </div>
         </div>

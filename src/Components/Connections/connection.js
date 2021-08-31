@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import TableComponent from "../TableComponent/TableComponent.js";
 import {Skeleton} from "antd";
-import {Link} from 'react-router-dom';
-import "./Dhome.css";
+import "./connections.css";
 
-class Dhome extends Component {
+class Connections extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,39 +19,20 @@ class Dhome extends Component {
       key: "ticket",
     },
     {
-      title: "Last Appointment",
-      dataIndex: "last_appointment",
-      key: "last_appointment",
+      title: "Specialist",
+      dataIndex: "Specialist",
+      key: "Specialist",
     },
-    {
-      title: "New Appointment",
-      dataIndex: "new_appointment",
-      key: "new_appointment",
-    },
-    {
-      title: "Priority",
-      dataIndex: "priority",
-      key: "priority",
-    },
-    {
-      title: "",
-      dataIndex: "opts",
-      key: "opts",
-      render:(patientId)=>{
-        return (
-          <Link to={`/patientProfile/${patientId}`}>Schedule</Link>
-        );  
-      }
-    },
+    
   ];
 
   fetchVillageList = () => {
     this.setState({ ...this.state, loading: true });
     axiosInstance
-      .get(`/patients`)
+      .get(`/doctors`)
       .then((res) => {
-        console.log(res.data.results);
-        let response=res.data.results;
+        console.log(res.data);
+        let response=res.data;
         let vilData=[];
         let n=response.length;
         for(let i=0;i<n;++i){
@@ -60,10 +40,7 @@ class Dhome extends Component {
             {
               key: i+1,
               ticket: response[i].user.name,
-              last_appointment: 'Parso',
-              new_appointment: 'Kal',
-              priority:response[i].problem,
-              opts:response[i].id
+              Specialist: 'orthologist'
             }
           );
         }
@@ -110,4 +87,4 @@ class Dhome extends Component {
   }
 }
 
-export default Dhome;
+export default Connections;

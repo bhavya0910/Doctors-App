@@ -20,7 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Stats from "./StatsDisp/stats.js";
 import Home from "./HomeComponent/Home";
 import Appointment from "./Appointments/Appointment.js";
-import connections from "./Connections/Connections.js";
+import connections from "./Connections/connection.js";
 import Schedule from "./Schedule/Schedule";
 import LogoSvg from "../assests/logo.svg";
 import { connect } from "react-redux";

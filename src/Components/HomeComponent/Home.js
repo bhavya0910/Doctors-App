@@ -101,6 +101,7 @@ class Home extends Component {
             title: '',
             dataIndex: 'opts',
             key: 'opts',
+           
           },
       ];
     render() {

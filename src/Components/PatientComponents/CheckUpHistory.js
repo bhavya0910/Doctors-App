@@ -153,6 +153,7 @@ const[appointmentData ,setappointment] = useState(null);
 
   let fetchProfile = () => {
     setLoading(true);
+    // let patient_id=props.history.location.pathname.split('/')[2];
     let patient_id = localStorage.getItem("patient_id");
     axiosInstance
       .get(`/patient/${patient_id}`)
