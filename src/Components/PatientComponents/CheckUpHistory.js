@@ -88,7 +88,7 @@ import "../ProfileView/ProfileView.css";
 import "../X-Ray/xRay.css";
 import './CheckUpHistory.css';
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col , Button } from "react-bootstrap";
 import axios from "axios";
 import { Skeleton, Avatar, message ,Divider} from "antd";
 import { Spinner } from "react-bootstrap";
@@ -99,6 +99,7 @@ import moment from "moment";
 import { Calendar, momentLocalizer,Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../Appointments/Appointment.css';
+import Typography from '@material-ui/core/Typography';
 
 // import FileDroper from './FileDroper';
 const localizer = momentLocalizer(moment);
@@ -281,9 +282,9 @@ const[appointmentData ,setappointment] = useState(null);
 
   return (
     <>
-    <div className={classes.root}>
-    <Grid container spacing={3}>
-    <Grid item xs={12}>
+        <Container fluid="md">
+  <Row>
+    <Col > 
     <Paper className={classes.paper}>
       <div className="prof_wrapper">
         {!loading && profileInfo ? (
@@ -398,9 +399,22 @@ const[appointmentData ,setappointment] = useState(null);
         )}
       </div>
       </Paper>
-      </Grid>
-      <Grid item xs={4}>
-          <Paper className={classes.paper}><Container>
+     </Col>
+   
+  </Row>
+  <hr
+              style={{
+                width: "90vw",
+                color: "#5c5c5c",
+                marginTop: "5%",
+                marginBottom: "2%",
+               marginRight: "20%",
+                backgroundColor: "white",
+              }}
+            />
+  <Row className="add-space">
+    <Col  md={4} sm={6}><Container>
+    <Paper className={classes.paper}>
                 <Row>
                     <h4>
                         CheckUp History
@@ -413,7 +427,7 @@ const[appointmentData ,setappointment] = useState(null);
                        reports.map((report)=>{
                      
                         return(  
-                            <Col md={4} sm={6} xs={12}>
+                            <Col md={6} sm={12} xs={6}>
                             <div className="carde">
                                 <div className="rep_date">
                                     DATE : {report.date}
@@ -430,13 +444,14 @@ const[appointmentData ,setappointment] = useState(null);
                     ):(
                         <Skeleton active={true}></Skeleton>
                     )
-                }
-                </Row>
-            </Container></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}><Container>
-        <Row>
+                }   </Row>
+                </Paper>
+               
+            </Container></Col>
+    <Col md={4} sm={6} ><Container>
+    
+        <Row className="adjust">
+       
           <h4>X-RAY's/SCAN's</h4>
         </Row>
         <Divider></Divider>
@@ -471,20 +486,23 @@ const[appointmentData ,setappointment] = useState(null);
                           </div>
                         </div>
                       </Col>
+                    
                     </Row>
+                  
                   </Container>
                 </Col>
+                 
               );
             })
           ) : (
             <Skeleton active={true}></Skeleton>
           )}
         </Row>
-      </Container></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper} style={{height:"700px"}}> 
+       
+      </Container></Col>
+    <Col >
           <Container>
+          <Paper className={classes.paper} style={{height:"700px"}}>
         <Row>
           <h4>Appointments</h4>
         </Row>
@@ -492,36 +510,38 @@ const[appointmentData ,setappointment] = useState(null);
         <Row>
           {!loading && appointmentData ? (
               <>
-               <div className="wrapper">
+                <div className="wrapper">
          
-            <div style={{ height: 400 }} className="right_appointment_content">
-              <Calendar
-                views={["month", "week"]}
-                localizer={localizer}
-                step={60}
-              
-                selectable={true}
-                events={appointmentData}
-              />
-              <div style={{marginTop:'20px'}}>
-              <button className="type1"style={{marginTop:'10px'}}>Add Appointment</button>
-              <button className="type1"style={{marginTop:'10px'}}>Add Remainder</button>
-              <button className="type1"style={{marginTop:'10px'}}>Add Note</button>
-              </div>
-            </div>
-            </div>
-            </>
-          
-        ) : (
-          <Skeleton active={true}></Skeleton>
-        )}
+         <div style={{ height: 400 }} className="right_appointment_content">
+           <Calendar
+             views={["month", "week"]}
+             localizer={localizer}
+             step={60}
+           
+             selectable={true}
+             events={appointmentData}
+           />
+           <div style={{marginTop:'5px'}}>
+           <button className="type1"style={{marginTop:'2px'}}>Add Appointment</button>
+           <button className="type1"style={{marginTop:'1px'}}>Add Remainder</button>
+           
+           </div>
+         </div>
+         </div>
+         </>
+       
+     ) : (
+       <Skeleton active={true}></Skeleton>
+     )}
         
         </Row>
-      </Container>    
-  </Paper>
-        </Grid>
-      </Grid>
-      </div>
+        </Paper> 
+      </Container>   
+     
+  </Col>
+  </Row>
+  
+</Container>
     </>
   );
 }

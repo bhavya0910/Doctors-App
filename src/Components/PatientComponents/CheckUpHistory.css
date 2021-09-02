@@ -7,6 +7,12 @@
     overflow-y: auto;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.062);
 }
+.adjust{
+  margin-top: 10px;
+}
+.add-space {
+  margin-top: 0px;
+}
 .rep_date{
     font-weight: 500;
     font-size: 1.1em;
@@ -32,3 +38,4 @@
   .card::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+  
