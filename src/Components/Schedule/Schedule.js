@@ -6,6 +6,11 @@ import "./Schedule.css";
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import {Skeleton,Divider} from 'antd';
 import axios from 'axios';
+import 'antd/dist/antd.css';
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import ModalComponent from './ModalComponent';
+import { Container } from '../../Container/index';
 const localizer = momentLocalizer(moment);
 var basic = require('basic-authorization-header');
 
@@ -15,6 +20,7 @@ class Appointment extends Component {
     this.state = {
       loading: false,
       appointmentData: null,
+     
     };
   }
   componentDidMount() {
@@ -65,6 +71,13 @@ class Appointment extends Component {
         });
       });
   }
+  triggerText = 'Ask for Appointment';
+  onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.date.value);
+    console.log(event.target.time.value);
+  };
+  
   render() {
    
     return (
@@ -74,7 +87,7 @@ class Appointment extends Component {
         ) : (
           <>
             <div className="left_appointment_content">
-              <button className="type1">Add Appointment</button>
+            <Container  className="type1" style={{color:'#DCE1F9'}} triggerText={this.triggerText} onSubmit={this.onSubmit} />
               <button className="type1">Add Remainder</button>
              
             </div>
