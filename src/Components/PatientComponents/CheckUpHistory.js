@@ -282,7 +282,7 @@ const[appointmentData ,setappointment] = useState(null);
 
   return (
     <>
-        <Container fluid="md">
+        <Container className="wrapper12">
   <Row>
     <Col > 
     <Paper className={classes.paper}>
@@ -294,7 +294,7 @@ const[appointmentData ,setappointment] = useState(null);
                 <h3>Profile</h3>
                 {imgUrl ? (
                   <Avatar
-                    style={{ width: "250px", height: "250px" }}
+                    style={{ width: "150px", height: "120px" }}
                     src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
                   />
                 ) : (
@@ -401,144 +401,6 @@ const[appointmentData ,setappointment] = useState(null);
       </Paper>
      </Col>
    
-  </Row>
-  <hr
-              style={{
-                width: "90vw",
-                color: "#5c5c5c",
-                marginTop: "5%",
-                marginBottom: "2%",
-               marginRight: "20%",
-                backgroundColor: "white",
-              }}
-            />
-  <Row className="add-space">
-    <Col  md={4} sm={6}><Container>
-    <Paper className={classes.paper}>
-                <Row>
-                    <h4>
-                        CheckUp History
-                    </h4>
-                </Row>
-                <Divider></Divider>
-                <Row>
-                {
-                    (!loading && reports )?(
-                       reports.map((report)=>{
-                     
-                        return(  
-                            <Col md={6} sm={12} xs={6}>
-                            <div className="carde">
-                                <div className="rep_date">
-                                    DATE : {report.date}
-                                </div>
-                                <div className="rep_data">
-                                    {report.data}
-                                </div>
-                            </div>
-                        </Col> 
-                        );
-                      
-                        })
-                                   
-                    ):(
-                        <Skeleton active={true}></Skeleton>
-                    )
-                }   </Row>
-                </Paper>
-               
-            </Container></Col>
-    <Col md={4} sm={6} ><Container>
-    
-        <Row className="adjust">
-       
-          <h4>X-RAY's/SCAN's</h4>
-        </Row>
-        <Divider></Divider>
-        <Row>
-          {!loading && xray? (
-            xray.map((xrayy) => {
-              return (
-                <Col md={12} sm={12} xs={12}>
-                  <Container className="xRay_card">
-                    <Row>
-                      <Col md={4}>
-                        <div className="card_left">
-                          {/* <img src={report.image}></img> */}
-                          <img
-                            src={`https://images-na.ssl-images-amazon.com/images/I/71eq9Xhwb1L.png`}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              marginRight: "30px",
-                            }}
-                          ></img>
-                        </div>
-                      </Col>
-                      <Col md={8}>
-                        <div className="card_right">
-                          <h3>X-RAY</h3>
-                          <div><span className="x_key">X-Ray Id</span> : <span className="x_val">{xrayy.report.id}</span></div>
-                          <div><span className="x_key">Date</span> : <span className="x_val">{xrayy.report.date}</span></div>
-                          <div><span className="x_key">Category</span> : <span className="x_val">{xrayy.report.category}</span></div>
-                          <div className="val_wrapper">
-                            {xrayy.report.data}
-                          </div>
-                        </div>
-                      </Col>
-                    
-                    </Row>
-                  
-                  </Container>
-                </Col>
-                 
-              );
-            })
-          ) : (
-            <Skeleton active={true}></Skeleton>
-          )}
-        </Row>
-       
-      </Container></Col>
-    <Col >
-          <Container>
-          <Paper className={classes.paper} style={{height:"700px"}}>
-        <Row>
-          <h4>Appointments</h4>
-        </Row>
-        <Divider></Divider>
-        <Row>
-          {!loading && appointmentData ? (
-              <>
-                <div className="wrapper">
-         
-         <div style={{ height: 400 }} className="right_appointment_content">
-           <Calendar
-             views={["month", "week"]}
-             localizer={localizer}
-             step={60}
-           
-             selectable={true}
-             events={appointmentData}
-           />
-           <div style={{marginTop:'5px'}}>
-           <button className="type1"style={{marginTop:'2px'}}>Add Appointment</button>
-           <button className="type1"style={{marginTop:'1px'}}>Add Remainder</button>
-           
-           </div>
-         </div>
-         </div>
-         </>
-       
-     ) : (
-       <Skeleton active={true}></Skeleton>
-     )}
-        
-        </Row>
-        </Paper> 
-      </Container>   
-     
-  </Col>
   </Row>
   
 </Container>

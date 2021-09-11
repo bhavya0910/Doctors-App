@@ -60,22 +60,7 @@ class PatientDashboard extends Component {
       >
         <div className="left_sider">
           <div className="sider_menu">
-            <Link to="/">
-              <div
-                tabIndex={1}
-                className={`checkup${
-                  this.state.activeMenuItem == 1 ? " active" : ""
-                }`}
-                onClick={() => {
-                  this.setState({ ...this.state, activeMenuItem: 1 });
-                }}
-              >
-                <span className="content_rapper">
-                  <img src={Profile}></img>
-                  <span>PROFILE</span>
-                </span>
-              </div>
-            </Link>
+         
             <Link to="/appointment">
               <div
                 tabIndex={1}

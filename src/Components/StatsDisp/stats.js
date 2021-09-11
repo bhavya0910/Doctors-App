@@ -16,25 +16,7 @@ class Stats extends Component {
     return (
       <Container className="stats_wrapper">
         <Row>
-          <Col md="3" sm={6} style={{ marginBottom: "20px" }}>
-            <Link to="/">
-              <div
-                onClick={() => {
-                  this.props.setActiveMenu(1);
-                }}
-                className={
-                  this.props.activeMenuItem == 1
-                    ? "m_card card_active"
-                    : "m_card"
-                }
-              >
-                <div className="stat_name">Profile</div>
-                <div className="stat_val">
-                    <img src={Profile}></img>
-                </div>
-              </div>
-            </Link>
-          </Col>
+         
           <Col md="3" sm={6} style={{ marginBottom: "20px" }}>
             <Link to="/appointment">
               <div
@@ -88,6 +70,25 @@ class Stats extends Component {
                 <img src={Documents}></img>
               </div>
             </div>
+            </Link>
+          </Col>
+          <Col md="3" sm={6} style={{ marginBottom: "20px" }}>
+            <Link to="/">
+              <div
+                onClick={() => {
+                  this.props.setActiveMenu(1);
+                }}
+                className={
+                  this.props.activeMenuItem == 1
+                    ? "m_card card_active"
+                    : "m_card"
+                }
+              >
+                <div className="stat_name">Profile</div>
+                <div className="stat_val">
+                    <img src={Profile}></img>
+                </div>
+              </div>
             </Link>
           </Col>
         </Row>

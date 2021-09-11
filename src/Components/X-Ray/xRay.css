@@ -4,6 +4,8 @@
     padding: 10px;
     margin:10px;
     border-radius: 5px;
+    overflow-y: auto;
+   max-height: 250px;
 }
 .header_xrayView{
     display: flex;
@@ -35,4 +37,14 @@
 }
 .card_right{
     margin-top: 15px;
+}
+body{
+    overflow-x: hidden;
+}
+.border1{
+    border-style: solid;
+border-width: thin;
+border-color: black;
+width:'600px';
+
 }
