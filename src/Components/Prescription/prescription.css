@@ -16,7 +16,32 @@
     margin-bottom: 15px;
     margin-left:0px;
 }
-.card{
-width:500px;
-height: 200px;
+.req_card{
+    height: 200px;
+    box-shadow: 0 0 0.625rem 0 rgb(0 0 0 / 10%);
+    border-radius: 5px;
 }
+.req_card:hover{
+    box-shadow: 0 0 0.825rem 0 rgba(0, 0, 0, 0.116);
+}
+/* width */
+.req_card::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  .req_card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .req_card::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  .req_card::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

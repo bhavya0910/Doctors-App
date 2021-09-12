@@ -61,7 +61,7 @@ export default class prescription extends Component {
                      
                         return(
                             <Col md={6} sm={12} xs={12}>
-                            <div className="card" style={{height: '200px', width: '500px', marginBottom: '20px'}}>
+                            <div className="req_card" style={{height: '200px', width: '500px', marginBottom: '20px',padding:'20px',overflowY:'auto'}}>
                                 <div className="rep_date">
                                     DATE : {report.date}
                                 </div>

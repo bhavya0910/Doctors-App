@@ -12,7 +12,11 @@
     overflow-y: auto;
     display: block;
 }
+a{
+    text-decoration: none !important;
+}
 .left_sider a{
+    text-decoration: none;
     color: white;
 }
 .left_sider a:hover{

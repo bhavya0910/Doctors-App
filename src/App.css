@@ -102,3 +102,6 @@ input.outline_def.error::after{
   width: 18px;
   margin-right: 12px;
 }
+a{
+  text-decoration: none !important;
+}

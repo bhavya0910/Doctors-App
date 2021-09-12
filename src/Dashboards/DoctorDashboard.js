@@ -56,114 +56,113 @@ class PatientDashboard extends Component {
       patientId: patient_id,
     });
   }
-  
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
-  onClose=()=>{
+  onClose = () => {
     this.setState({
       ...this.state,
-      collapsed:false,
-    })
-  }
+      collapsed: false,
+    });
+  };
   render() {
     return (
-
       <div
-      className="layout_wrapper"
-      onClick={() => {
-        if (this.state.isPopOverVisible) {
-          this.setState({ ...this.state, isPopOverVisible: false });
-        }
-      }}
-    >
-      <div className="left_sider">
-        <div className="sider_menu">
-          <Link to="/">
-            <div
-            ////patientProfile/id
-              tabIndex={1}
-              className={`Dhome${
-                this.state.activeMenuItem == 1 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 1 });
-              }}
-            >
-              <span className="content_rapper">
-                <img src={Profile}></img>
-                <span>Home Page</span>
-              </span>
-            </div>
-          </Link>
-          <Link to="/Dappointments">
-            <div
-              tabIndex={1}
-              className={`Dappointments${
-                this.state.activeMenuItem == 2 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 2 });
-              }}
-            >
-              <span className="content_rapper">
-                <img src={Appointment}></img>
-                <span>Appointments</span>
-              </span>
-            </div>
-          </Link>
+        className="layout_wrapper"
+        onClick={() => {
+          if (this.state.isPopOverVisible) {
+            this.setState({ ...this.state, isPopOverVisible: false });
+          }
+        }}
+      >
+        <div className="left_sider">
+          <div className="sider_menu">
+            <Link to="/">
+              <div
+                ////patientProfile/id
+                tabIndex={1}
+                className={`Dhome${
+                  this.state.activeMenuItem == 1 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 1 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img src={Profile}></img>
+                  <span>Home Page</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/Dappointments">
+              <div
+                tabIndex={1}
+                className={`Dappointments${
+                  this.state.activeMenuItem == 2 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 2 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img src={Appointment}></img>
+                  <span>Appointments</span>
+                </span>
+              </div>
+            </Link>
 
-          <Link to="/schedule">
-            <div
-              tabIndex={1}
-              className={`Dappointments${
-                this.state.activeMenuItem == 3 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 3 });
-              }}
-            >
-              <span className="content_rapper">
-                <img src={schedule}></img>
-                <span>Schedule</span>
-              </span>
-            </div>
-          </Link>
-          <Link to="/connections">
-            <div
-              tabIndex={1}
-              className={`connections${
-                this.state.activeMenuItem == 4 ? " active" : ""
-              }`}
-              onClick={() => {
-                this.setState({ ...this.state, activeMenuItem: 4 });
-              }}
-            >
-              <span className="content_rapper">
-                <img src={Connections}></img>
-                <span>Connections</span>
-              </span>
-            </div>
-          </Link>
+            <Link to="/schedule">
+              <div
+                tabIndex={1}
+                className={`Dappointments${
+                  this.state.activeMenuItem == 3 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 3 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img src={schedule}></img>
+                  <span>Schedule</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/connections">
+              <div
+                tabIndex={1}
+                className={`connections${
+                  this.state.activeMenuItem == 4 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 4 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img src={Connections}></img>
+                  <span>Connections</span>
+                </span>
+              </div>
+            </Link>
 
-          <div
-            tabIndex={1}
-            className={`settings${
-              this.state.activeMenuItem == 6 ? " active" : ""
-            }`}
-            onClick={() => {
-              this.setState({ ...this.state, activeMenuItem: 6 });
-            }}
-          >
-            <span className="content_rapper">
-              <img src={Settings}></img>
-              <span>SETTINGS</span>
-            </span>
+            <div
+              tabIndex={1}
+              className={`settings${
+                this.state.activeMenuItem == 6 ? " active" : ""
+              }`}
+              onClick={() => {
+                this.setState({ ...this.state, activeMenuItem: 6 });
+              }}
+            >
+              <span className="content_rapper">
+                <img src={Settings}></img>
+                <span>SETTINGS</span>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
         <div className="right_content_layout">
           <div className="right_header_layout">
             <div className="over_view_text">Overview</div>
@@ -239,11 +238,11 @@ class PatientDashboard extends Component {
                 }
               >
                 <Link to="/DoctorView">
-                <div className="menu_item">
-                  {this.state.username ? this.state.username : ""}
-                </div>
+                  <div className="menu_item">
+                    {this.state.username ? this.state.username : ""}
+                  </div>
                 </Link>
-               
+
                 <div
                   className="menu_item"
                   onClick={() => {
@@ -283,24 +282,33 @@ class PatientDashboard extends Component {
                 exact
                 component={Dappointments}
               ></Route>
-              
-              <Route path="/connections" key={4} exact component={connections}></Route>
-              
-              <Route path="/Doctorview"  key={4}
+
+              <Route
+                path="/connections"
+                key={4}
+                exact
+                component={connections}
+              ></Route>
+
+              <Route
+                path="/Doctorview"
+                key={4}
                 exact
                 render={(props) => (
                   <DoctorView history={props.history}></DoctorView>
-                )}></Route>
-                <Route path="/patientList/: patientId" exact render={(props)=>{
-                  
-                    <Check history={props.history}></Check>
-                }}></Route>
+                )}
+              ></Route>
+              <Route
+                path="/patientList/ patientId"
+                exact
+                render={(props) => {
+                  <Check history={props.history}></Check>;
+                }}
+              ></Route>
             </Switch>
           </div>
         </div>
       </div>
-      
-         
     );
   }
 }

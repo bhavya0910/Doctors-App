@@ -260,7 +260,6 @@ class PatientDashboard extends Component {
                 render={(props) => (
                   <ProfileView history={props.history}></ProfileView>
                 )}>
-
                 </Route>
             </Switch>
           </div>
