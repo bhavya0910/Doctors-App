@@ -6,22 +6,33 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
+import { Drawer, Button } from 'antd';
 import { connect } from "react-redux";
 import { Toggle_Logged_In } from "../../src/actions/toggleLogged";
 import LogoSvg from "../assests/logo.svg";
+import backArrow from "../assests/logo.svg";
 import Avatar from "@material-ui/core/Avatar";
 import CheckUpHistory from "../Components/PatientComponents/CheckUpHistory";
 import Check from "../Components/PatientComponents/Check";
 import Home from "../Components/HomeComponent/Home";
 import Dhome from "../Components/HomeComponent/Dhome";
 import Prescription from "../Components/Prescription/prescription";
-import Schedule from "../Components/Schedule/Schedule";
+import { Layout, Menu } from 'antd';
 import Dschedule from "../Components/Schedule/Dschedule";
 import XRay from "../Components/X-Ray/xRay";
 import XRayView from "../Components/X-Ray/xRayView";
 import Profile from ".././assests/profile.svg";
 import Appointment from ".././assests/appointment.svg";
-import schedule from "../assests/schedule.svg";
+import Conn from ".././assests/Conn.svg";
+import Schedule from "../assests/schedule.svg";
+
 import Documents from "../assests/document.svg";
 import Settings from "../assests/settings.svg";
 import Connections from "../assests/connections.svg";
@@ -30,22 +41,29 @@ import ProfileView from "../Components/ProfileView/ProfileView";
 import DoctorView from "../Components/ProfileView/DoctorView";
 import connections from "../Components/Connections/connection";
 import Dappointments from "../Components/Appointments/Dappointments";
+import "antd/dist/antd.css";
 
+
+const { Header, Sider, Content } = Layout;
 class PatientDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeMenuItem: "1",
       isPopOverVisible: false,
+      show: false,
       username: null,
       patientId: null,
       collapsed: true,
+      visible: false
     };
     this.setActiveMenu = this.setActiveMenu.bind(this);
+    
   }
   setActiveMenu(num) {
     this.setState({ ...this.state, activeMenuItem: num });
   }
+
   componentDidMount() {
     let patient_username = localStorage.getItem("username");
     let patient_id = localStorage.getItem("Doctor_id");
@@ -55,13 +73,22 @@ class PatientDashboard extends Component {
       username: patient_username,
       patientId: patient_id,
     });
-  }
+  };
+  
 
+  showDrawer = () => {
+    this.setState((prevState) => ({
+      visible: !prevState.visible
+    }));
+  };
+
+  
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
+
   onClose = () => {
     this.setState({
       ...this.state,
@@ -77,8 +104,8 @@ class PatientDashboard extends Component {
             this.setState({ ...this.state, isPopOverVisible: false });
           }
         }}
-      >
-        <div className="left_sider">
+      > 
+       <div className="left_sider">
           <div className="sider_menu">
             <Link to="/">
               <div
@@ -125,7 +152,7 @@ class PatientDashboard extends Component {
                 }}
               >
                 <span className="content_rapper">
-                  <img src={schedule}></img>
+                  <img src={Schedule}></img>
                   <span>Schedule</span>
                 </span>
               </div>
@@ -163,9 +190,110 @@ class PatientDashboard extends Component {
             </div>
           </div>
         </div>
-        <div className="right_content_layout">
-          <div className="right_header_layout">
-            <div className="over_view_text">Overview</div>
+       
+    <div className="right_content_layout">
+      <div className="right_header_layout">
+        
+        <Button  style={{backgroundColor:"white"}} onClick={this.showDrawer}>
+        <img src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"/>
+    </Button>
+    <Drawer
+      title=""
+      placement="left"
+      closable={false}
+      onClose={this.showDrawer}
+      visible={this.state.visible}
+      width={350}
+      backgroundColor = "#172578"
+     
+    >
+      <div className="drawer">
+       
+       <Link to="/">
+              <div
+                ////patientProfile/id
+                tabIndex={1}
+                className={`Dhome${
+                  this.state.activeMenuItem == 1 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 1 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{marginBottom: "10px"}} src={Profile}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>Home Page</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/Dappointments">
+              <div
+                tabIndex={1}
+                className={`Dappointments${
+                  this.state.activeMenuItem == 2 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 2 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{marginBottom: "10px"}} src={Appointment}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>Appointments</span>
+                </span>
+              </div>
+            </Link>
+
+            <Link to="/schedule">
+              <div
+                tabIndex={1}
+                className={`Dappointments${
+                  this.state.activeMenuItem == 3 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 3 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{marginBottom: "10px"}} src={Schedule}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>Schedule</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/connections">
+              <div
+                tabIndex={1}
+                className={`connections${
+                  this.state.activeMenuItem == 4 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 4 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{marginBottom: "10px"}} src={Connections}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>Connections</span>
+                </span>
+              </div>
+            </Link>
+
+            <div
+              tabIndex={1}
+              className={`settings${
+                this.state.activeMenuItem == 6 ? " active" : ""
+              }`}
+              onClick={() => {
+                this.setState({ ...this.state, activeMenuItem: 6 });
+              }}
+            >
+              <span className="content_rapper">
+                <img style={{marginBottom: "10px"}} src={Settings}></img>
+                <span style={{fontSize:"20px" , marginBottom: "10px"}}>SETTINGS</span>
+              </span>
+            </div>
+
+</div>
+        </Drawer>
+            
             <div>
               <img style={{ width: "100px" }} src={LogoSvg}></img>
             </div>

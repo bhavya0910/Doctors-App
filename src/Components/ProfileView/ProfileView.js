@@ -103,7 +103,11 @@ export default function ProfileView() {
                 <h3>Profile</h3>
                 {imgUrl ? (
                   <Avatar
-                    style={{ width: "250px", height: "250px" }}
+                    style={{  width: "100%",
+                    height: "100%",
+                    maxWidth: "250px",
+
+                   maxHeight:"250px" }}
                     src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
                   />
                 ) : (

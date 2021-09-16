@@ -60,7 +60,7 @@ export default class XRay extends Component {
     return (
       <Container>
         <Row>
-          <h4>X-RAYY's/SCAN's</h4>
+          <h4>X-RAY's/SCAN's</h4>
         </Row>
         <Divider></Divider>
         <Row>
@@ -77,7 +77,8 @@ export default class XRay extends Component {
                             src={`https://images-na.ssl-images-amazon.com/images/I/71eq9Xhwb1L.png`}
                             style={{
                               width: "100%",
-                              height: "100%",
+                             maxHeight: "200px",
+                             maxWidth:"200px",
                               marginRight: "30px",
                             }}
                           ></img>

@@ -48,7 +48,8 @@ import React, { Component } from "react";
 import moment from "moment";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import 'react-responsive-modal/styles.css';
+import { Container } from '../../Container/Dindex';
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import {Skeleton,Divider} from 'antd';
 import axios from 'axios';
@@ -111,6 +112,13 @@ class Appointment extends Component {
         });
       });
   }
+  triggerText = 'Add Appointment';
+  onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.date.value);
+    console.log(event.target.time.value);
+  };
+  
   render() {
    
     return (
@@ -120,7 +128,7 @@ class Appointment extends Component {
         ) : (
           <>
             <div className="left_appointment_content">
-              <button className="type1">Add Appointment</button>
+            <Container  className="type1" style={{color:'#DCE1F9'}} triggerText={this.triggerText} onSubmit={this.onSubmit} />
               <button className="type1">Add Remainder</button>
              
             </div>

@@ -103,7 +103,9 @@ export default function ProfileView(id) {
                 <h3>Profile</h3>
                 {imgUrl ? (
                   <Avatar
-                    style={{ width: "250px", height: "250px" }}
+                    style={{  width: "100%",
+                    maxWidth: "400px",
+                    height: "auto"}}
                     src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
                   />
                 ) : (
@@ -114,7 +116,7 @@ export default function ProfileView(id) {
               <Col md={8} sm={12} className="rightProfile_wrapper">
                 <form className="prof_edit_form" >
                   <div className="m_form_item">
-                    <h6>Username</h6>
+                    <h6>Usernamee</h6>
                     <input
                       value={username}
                       
