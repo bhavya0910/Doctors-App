@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { connect } from "react-redux";
+import { Drawer, Button } from 'antd';
 import { Toggle_Logged_In } from "../../src/actions/toggleLogged";
 import LogoSvg from "../assests/logo.svg";
 import Avatar from "@material-ui/core/Avatar";
@@ -48,6 +49,25 @@ class PatientDashboard extends Component {
       patientId: patient_id,
     });
   }
+  showDrawer = () => {
+    this.setState((prevState) => ({
+      visible: !prevState.visible
+    }));
+  };
+
+  
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      ...this.state,
+      collapsed: false,
+    });
+  };
   render() {
     return (
       <div
@@ -129,7 +149,86 @@ class PatientDashboard extends Component {
         </div>
         <div className="right_content_layout">
           <div className="right_header_layout">
-            <div className="over_view_text">Overview</div>
+          <Button id="my-content"   style={{backgroundColor:"white"}} onClick={this.showDrawer}>
+        <img src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"/>
+    </Button>
+    <Drawer
+      title=""
+      placement="left"
+      closable={false}
+      onClose={this.showDrawer}
+      visible={this.state.visible}
+      width={500}
+      backgroundColor = "#172578"
+     
+    >
+      <div className="drawer">
+      <Link to="/appointment">
+              <div
+                tabIndex={1}
+                className={`x_ray${
+                  this.state.activeMenuItem == 2 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 2 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{ marginBottom: "10px"}} src={Appointment}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>APPOINTMENTS</span>
+                </span>
+              </div>
+            </Link>
+
+            <Link to="/prescription">
+              <div
+                tabIndex={1}
+                className={`prescription${
+                  this.state.activeMenuItem == 3 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 3 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{marginBottom: "10px"}} src={Prescriptions}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>PRESCRIPTIONS</span>
+                </span>
+              </div>
+            </Link>
+            <Link to="/xRays">
+              <div
+                tabIndex={1}
+                className={`appointments${
+                  this.state.activeMenuItem == 4 ? " active" : ""
+                }`}
+                onClick={() => {
+                  this.setState({ ...this.state, activeMenuItem: 4 });
+                }}
+              >
+                <span className="content_rapper">
+                  <img style={{ marginBottom: "10px"}} src={Documents}></img>
+                  <span style={{fontSize:"20px" , marginBottom: "10px"}}>DOCUMENTS</span>
+                </span>
+              </div>
+            </Link>
+
+            <div
+              tabIndex={1}
+              className={`settings${
+                this.state.activeMenuItem == 6 ? " active" : ""
+              }`}
+              onClick={() => {
+                this.setState({ ...this.state, activeMenuItem: 6 });
+              }}
+            >
+              <span className="content_rapper">
+                <img  style={{ marginBottom: "10px"}} src={Settings}></img>
+                <span style={{fontSize:"20px" , marginBottom: "10px"}}>SETTINGS</span>
+              </span>
+            </div>
+     </div>
+        </Drawer>
             <div>
               <img style={{ width: "100px" }} src={LogoSvg}></img>
             </div>

@@ -194,7 +194,7 @@ class PatientDashboard extends Component {
     <div className="right_content_layout">
       <div className="right_header_layout">
         
-        <Button  style={{backgroundColor:"white"}} onClick={this.showDrawer}>
+        <Button id="my-content"   style={{backgroundColor:"white"}} onClick={this.showDrawer}>
         <img src="https://img.icons8.com/material-outlined/24/000000/menu--v1.png"/>
     </Button>
     <Drawer
@@ -203,7 +203,7 @@ class PatientDashboard extends Component {
       closable={false}
       onClose={this.showDrawer}
       visible={this.state.visible}
-      width={350}
+      width={500}
       backgroundColor = "#172578"
      
     >

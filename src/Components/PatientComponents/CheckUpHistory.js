@@ -619,7 +619,7 @@ export default function ProfileView() {
               <Col md={8} sm={12} className="rightProfile_wrapper">
                 <form className="prof_edit_form" >
                   <div className="m_form_item">
-                    <h6>Username</h6>
+                    <h6>Usernamee</h6>
                     <input
                       value={username}
                       

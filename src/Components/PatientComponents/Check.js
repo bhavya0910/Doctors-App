@@ -201,139 +201,24 @@ const[appointmentData ,setappointment] = useState(null);
 
   return (
     <>
-    <div className={classes.root}>
-    <Grid container spacing={3}>
-    <Grid item xs={12}>
-    <Paper className={classes.paper}>
-      <div className="prof_wrapper">
-        {!loading && profileInfo ? (
-          <Container className="profile_wrapper">
-            <Row>
-              <Col md={4} sm={12} className="leftProfile_wrapper">
-                <h3>Profile</h3>
-                {imgUrl ? (
-                  <Avatar
-                    style={{ width: "250px", height: "250px" }}
-                    src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
-                  />
-                ) : (
-                  <Avatar></Avatar>
-                )}
-                {/* <FileDroper uploadFile={uploadFile}></FileDroper> */}
-              </Col>
-              <Col md={8} sm={12} className="rightProfile_wrapper">
-                <form className="prof_edit_form" >
-                 
-                  <div className="m_form_item">
-                    <h6>Name</h6>
-                    <input
-                      
-                      onChange={(e) => {
-                        setName(e.target.value);
-                      }}
-                      value={name}
-                      className="outline_def"
-                      type="name"
-                      id="name"
-                      style={{ width: "100%" }}
-                    ></input>
-                     <div className="m_form_item">
-                    <h6>Case of</h6>
-                    <input
-                      value="Orthologist"
-                      
-                      className="outline_def"
-                      type="username"
-                      id="username"
-                      style={{ width: "100%" }}
-                    ></input>
-                  </div>
-                  </div>
-                  <div className="m_form_item">
-                    <h6>Gender</h6>
-                    <input
-                      value={gender}
-                      onChange={(e) => {
-                        setAge(e.target.value);
-                      }}
-                      
-                      className="outline_def"
-                      type="age"
-                      id="age"
-                      style={{ width: "100%" }}
-                    ></input>
-                  </div>
-                  <div className="m_form_item">
-                    <h6>Age</h6>
-                    <input
-                      value={age}
-                      onChange={(e) => {
-                        setAge(e.target.value);
-                      }}
-                      
-                      className="outline_def"
-                      type="age"
-                      id="age"
-                      style={{ width: "100%" }}
-                    ></input>
-                  </div>
-                  
-                  
-                  
-                  
-                  <div className="button_opts">
-                    <button className="filled" onClick={handleSubmit}>
-                     
-                      <span style={{paddingRight:'5px'}}>Save Changes</span>
-                      {btnLoading ? (
-                        <Spinner
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </button>
-                    <button className="filled" onClick={(e)=>{
-                        e.preventDefault();
-                          setName(profileInfo.data.user.name);
-                          setUsername(profileInfo.data.user.username);
-                          setAge(profileInfo.data.user.age);
-                          setAddress(profileInfo.data.user.address);
-                          setPhone(profileInfo.data.user.phone_number);
-                          setEmail(profileInfo.data.user.email);
-                    }}>
-                      <span>Cancel</span>
-                    </button>
-                  </div>
-                </form>
-              </Col>
-            </Row>
-          </Container>
-        ) : (
-          <Skeleton active={true}></Skeleton>
-        )}
-      </div>
-      </Paper>
-      </Grid>
-      <Grid item xs={4}>
-          <Paper className={classes.paper}><Container>
-                <Row>
+    <Row className="add-space">
+    <Col  md={6} sm={6}><Container>
+   <div >
+                <Row >
+                  <div >
                     <h4>
                         CheckUp History
                     </h4>
+                    </div>
                 </Row>
-                <Divider></Divider>
+                
                 <Row>
                 {
                     (!loading && reports )?(
                        reports.map((report)=>{
                      
                         return(  
-                            <Col md={4} sm={6} xs={12}>
+                            <Col  md={12} sm={12} xs={12}>
                             <div className="carde">
                                 <div className="rep_date">
                                     DATE : {report.date}
@@ -350,13 +235,14 @@ const[appointmentData ,setappointment] = useState(null);
                     ):(
                         <Skeleton active={true}></Skeleton>
                     )
-                }
-                </Row>
-            </Container></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}><Container>
-        <Row>
+                }   </Row>
+              
+              </div>
+            </Container></Col>
+    <Col md={6} sm={6} ><Container>
+    <Paper className={classes.paper} >
+        <Row className="adjust">
+       
           <h4>X-RAY's/SCAN's</h4>
         </Row>
         <Divider></Divider>
@@ -391,20 +277,23 @@ const[appointmentData ,setappointment] = useState(null);
                           </div>
                         </div>
                       </Col>
+                    
                     </Row>
+                  
                   </Container>
                 </Col>
+                 
               );
             })
           ) : (
             <Skeleton active={true}></Skeleton>
           )}
         </Row>
-      </Container></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper} style={{height:"700px"}}> 
+       </Paper>
+      </Container></Col>
+   <Row  md={12} sm={12} xs={12}>
           <Container>
+          <Paper className={classes.paper} style={{height:"700px", marginLeft:"20px" , marginTop:"20px"}}>
         <Row>
           <h4>Appointments</h4>
         </Row>
@@ -412,36 +301,37 @@ const[appointmentData ,setappointment] = useState(null);
         <Row>
           {!loading && appointmentData ? (
               <>
-               <div className="wrapper">
+                <div className="wrapper">
          
-            <div style={{ height: 400 }} className="right_appointment_content">
-              <Calendar
-                views={["month", "week"]}
-                localizer={localizer}
-                step={60}
-              
-                selectable={true}
-                events={appointmentData}
-              />
-              <div style={{marginTop:'20px'}}>
-              <button className="type1"style={{marginTop:'10px'}}>Add Appointment</button>
-              <button className="type1"style={{marginTop:'10px'}}>Add Remainder</button>
-              <button className="type1"style={{marginTop:'10px'}}>Add Note</button>
-              </div>
-            </div>
-            </div>
-            </>
-          
-        ) : (
-          <Skeleton active={true}></Skeleton>
-        )}
+         <div style={{ height : 400, marginLeft:"70px"  }} className="right_appointment_content">
+           <Calendar
+             views={["month", "week"]}
+             localizer={localizer}
+             step={60}
+           
+             selectable={true}
+             events={appointmentData}
+           />
+           <div style={{marginTop:'5px'}}>
+           <button className="type1"style={{marginTop:'2px'}}>Add Appointment</button>
+           <button className="type1"style={{marginTop:'1px'}}>Add Remainder</button>
+           
+           </div>
+         </div>
+         </div>
+         </>
+       
+     ) : (
+       <Skeleton active={true}></Skeleton>
+     )}
         
         </Row>
-      </Container>    
-  </Paper>
-        </Grid>
-      </Grid>
-      </div>
+        </Paper> 
+      </Container>   
+     
+      </Row>
+  </Row>
+
     </>
   );
 }
