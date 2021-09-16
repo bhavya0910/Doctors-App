@@ -76,7 +76,7 @@ export default class CheckUpHistory extends Component {
                 }
                 </Row>
             </Container>*/
-           /* <div>
+/* <div>
                 hlo
             </div>
         )
@@ -86,41 +86,39 @@ export default class CheckUpHistory extends Component {
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import "../ProfileView/ProfileView.css";
 import "../X-Ray/xRay.css";
-import './CheckUpHistory.css';
+import "./CheckUpHistory.css";
 import { Link } from "react-router-dom";
-import { Container, Row, Col , Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import axios from "axios";
-import { Skeleton, Avatar, message ,Divider} from "antd";
+import { Skeleton, Avatar, message, Divider } from "antd";
 import { Spinner } from "react-bootstrap";
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import moment from "moment";
-import { Calendar, momentLocalizer,Views } from "react-big-calendar";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import '../Appointments/Appointment.css';
-import Typography from '@material-ui/core/Typography';
+import "../Appointments/Appointment.css";
+import Typography from "@material-ui/core/Typography";
 
 // import FileDroper from './FileDroper';
 const localizer = momentLocalizer(moment);
 const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
-    },
-  }));
-  
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "left",
+    color: theme.palette.text.secondary,
+  },
+}));
 
-export default function ProfileView() {
-   
-    const classes = useStyles();
+export default function ProfileView(props) {
+  const classes = useStyles();
   const [profileInfo, setProfile] = useState(null);
   const [loading, setLoading] = useState(false);
-const[reports,setreports] = useState(null);
+  const [reports, setreports] = useState(null);
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -128,12 +126,12 @@ const[reports,setreports] = useState(null);
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [gender,setgender] = useState("");
+  const [gender, setgender] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
   const [updatedPic, setPic] = useState(null);
   const [imgUrl, setUrl] = useState(null);
-const[xray,setxray] = useState(null);
-const[appointmentData ,setappointment] = useState(null);
+  const [xray, setxray] = useState(null);
+  const [appointmentData, setappointment] = useState(null);
   function readURL(input) {
     if (input) {
       var reader = new FileReader();
@@ -153,8 +151,8 @@ const[appointmentData ,setappointment] = useState(null);
 
   let fetchProfile = () => {
     setLoading(true);
-    // let patient_id=props.history.location.pathname.split('/')[2];
-    let patient_id = localStorage.getItem("patient_id");
+    let patient_id = props.history.location.pathname.split("/")[2];
+    // let patient_id = localStorage.getItem("patient_id");
     axiosInstance
       .get(`/patient/${patient_id}`)
       .then((profile) => {
@@ -178,12 +176,12 @@ const[appointmentData ,setappointment] = useState(null);
   };
   let fetchhistory = () => {
     setLoading(true);
-    let patient_id = localStorage.getItem("patient_id");
+    let patient_id = props.history.location.pathname.split("/")[2];
     axiosInstance
       .get(`/reports/${patient_id}`)
       .then((reports) => {
         console.log(reports);
-       setreports(reports.data);
+        setreports(reports.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -192,12 +190,12 @@ const[appointmentData ,setappointment] = useState(null);
   };
   let fetchxray = () => {
     setLoading(true);
-    let patient_id = localStorage.getItem("patient_id");
+    let patient_id = props.history.location.pathname.split("/")[2];
     axiosInstance
       .get(`/xrays/${patient_id}`)
       .then((xrayy) => {
         console.log(xrayy);
-       setxray(xrayy.data);
+        setxray(xrayy.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -206,16 +204,18 @@ const[appointmentData ,setappointment] = useState(null);
   };
   let fetchappointments = () => {
     setLoading(true);
-   
-    let username=localStorage.getItem('username');
-    let password=localStorage.getItem('password');
-    let auth_basic= Buffer.from(`${username}:${password}`, 'utf8').toString('base64');
+
+    let username = localStorage.getItem("username");
+    let password = localStorage.getItem("password");
+    let auth_basic = Buffer.from(`${username}:${password}`, "utf8").toString(
+      "base64"
+    );
     var config = {
-      method: 'get',
-      url: 'https://maivrikdoc.herokuapp.com/api/getappointment',
-      headers: { 
-        'Authorization':`Basic ${auth_basic}` 
-      }
+      method: "get",
+      url: "https://maivrikdoc.herokuapp.com/api/getappointment",
+      headers: {
+        Authorization: `Basic ${auth_basic}`,
+      },
     };
     axios(config)
       .then((resp) => {
@@ -226,22 +226,20 @@ const[appointmentData ,setappointment] = useState(null);
           console.log(arr);
           let date = arr[i].date;
           console.log(date);
-          let array = date.toString().split('-');
+          let array = date.toString().split("-");
           console.log(array);
-          if(array){
+          if (array) {
             appointments.push({
               title: arr[i].id,
               start: new Date(array[0], array[1], array[2], 0, 0, 0),
               end: new Date(array[0], array[1], array[2], 0, 0, 0),
             });
-          }  
+          }
         }
-       
-        
-       setappointment(appointments);
-       
-         setLoading(false);
 
+        setappointment(appointments);
+
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
@@ -253,14 +251,14 @@ const[appointmentData ,setappointment] = useState(null);
     setBtnLoading(true);
     let patient_id = localStorage.getItem("patient_id");
     axiosInstance
-      .put(`/user/${patient_id}`,{
-          name:name,
-          age:age,
-          state:state,
-          email:email,
-          address:address,
-          phone_number:phone,
-          gender: gender,
+      .put(`/user/${patient_id}`, {
+        name: name,
+        age: age,
+        state: state,
+        email: email,
+        address: address,
+        phone_number: phone,
+        gender: gender,
       })
       .then((res) => {
         message.success("Successfully saved changes!");
@@ -275,30 +273,123 @@ const[appointmentData ,setappointment] = useState(null);
 
   useEffect(() => {
     fetchProfile();
-    fetchhistory ();
+    fetchhistory();
     fetchxray();
     fetchappointments();
   }, []);
 
   return (
     <>
-        <Container className="wrapper12">
-  <Row>
-    <Col > 
-    <Paper className={classes.paper}>
-      <div className="prof_wrapper">
-        {!loading && profileInfo ? (
-          <Container className="profile_wrapper">
-            <Row>
-              <Col md={4} sm={12} className="leftProfile_wrapper">
-                <h3>Profile</h3>
-                {imgUrl ? (
-                  <Avatar
-                    style={{ width: "150px", height: "120px" }}
-                    src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
-                  />
+      <Container className="wrapper12">
+        <Row>
+          <Col>
+            <Paper className={classes.paper}>
+              <div className="prof_wrapper">
+                {!loading && profileInfo ? (
+                  <Container className="profile_wrapper">
+                    <Row>
+                      <Col md={4} sm={12} className="leftProfile_wrapper">
+                        <h3>Profile</h3>
+                        {imgUrl ? (
+                          <Avatar
+                            style={{ width: "150px", height: "120px" }}
+                            src={`https://dailysuperheroes.com/wp-content/uploads/2020/02/tony-stark.jpg`}
+                          />
+                        ) : (
+                          <Avatar></Avatar>
+                        )}
+                       
+                      </Col>
+                      <Col md={8} sm={12} className="rightProfile_wrapper">
+                        <form className="prof_edit_form">
+                          <div className="m_form_item">
+                            <h6>Name</h6>
+                            <input
+                              onChange={(e) => {
+                                setName(e.target.value);
+                              }}
+                              value={name}
+                              className="outline_def"
+                              type="name"
+                              id="name"
+                              style={{ width: "100%" }}
+                            ></input>
+                            <div className="m_form_item">
+                              <h6>Case of</h6>
+                              <input
+                                value="Orthologist"
+                                className="outline_def"
+                                type="username"
+                                id="username"
+                                style={{ width: "100%" }}
+                              ></input>
+                            </div>
+                          </div>
+                          <div className="m_form_item">
+                            <h6>Gender</h6>
+                            <input
+                              value={gender}
+                              onChange={(e) => {
+                                setAge(e.target.value);
+                              }}
+                              className="outline_def"
+                              type="age"
+                              id="age"
+                              style={{ width: "100%" }}
+                            ></input>
+                          </div>
+                          <div className="m_form_item">
+                            <h6>Age</h6>
+                            <input
+                              value={age}
+                              onChange={(e) => {
+                                setAge(e.target.value);
+                              }}
+                              className="outline_def"
+                              type="age"
+                              id="age"
+                              style={{ width: "100%" }}
+                            ></input>
+                          </div>
+
+                          <div className="button_opts">
+                            <button className="filled" onClick={handleSubmit}>
+                              <span style={{ paddingRight: "5px" }}>
+                                Save Changes
+                              </span>
+                              {btnLoading ? (
+                                <Spinner
+                                  as="span"
+                                  animation="border"
+                                  size="sm"
+                                  role="status"
+                                  aria-hidden="true"
+                                />
+                              ) : (
+                                ""
+                              )}
+                            </button>
+                            <button
+                              className="filled"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setName(profileInfo.data.user.name);
+                                setUsername(profileInfo.data.user.username);
+                                setAge(profileInfo.data.user.age);
+                                setAddress(profileInfo.data.user.address);
+                                setPhone(profileInfo.data.user.phone_number);
+                                setEmail(profileInfo.data.user.email);
+                              }}
+                            >
+                              <span>Cancel</span>
+                            </button>
+                          </div>
+                        </form>
+                      </Col>
+                    </Row>
+                  </Container>
                 ) : (
-                  <Avatar></Avatar>
+                  <Skeleton active={true}></Skeleton>
                 )}
                
              /* </Col>
