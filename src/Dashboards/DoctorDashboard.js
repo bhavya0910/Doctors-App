@@ -299,11 +299,11 @@ class PatientDashboard extends Component {
                 )}
               ></Route>
               <Route
-                path="/patientList/ patientId"
+                path="/patientProfile/:patientId"
                 exact
-                render={(props) => {
-                  <Check history={props.history}></Check>;
-                }}
+                render={(props) => (
+                  <Check history={props.history}></Check>
+                )}
               ></Route>
             </Switch>
           </div>
