@@ -2,7 +2,9 @@ import React, { useState , useEffect } from "react";
 import { axiosInstance } from "../utils/axiosInterceptor";
 import { Select, Spin } from "antd";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { message } from "antd";
 import {DropdownButton, Dropdown} from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap'
 export const Form = ({ onSubmit }) => {
   
   const [data, setdata] = useState({
@@ -13,8 +15,8 @@ export const Form = ({ onSubmit }) => {
    
   });
  const[option,setoptions] = useState([]);
-  
-  const [loading, setLoading] = useState(false);
+ const [loading, setLoading] = useState(false);
+ const [btnLoading, setBtnLoading] = useState(false);
   
   
 
@@ -28,6 +30,7 @@ export const Form = ({ onSubmit }) => {
     console.log("hi");
     e.preventDefault();
     console.log(data);
+    setBtnLoading(true);
     axiosInstance
       .post(`https://maivrikdoc.herokuapp.com/api/askappointment`, {
         doctor: data.doctor,
@@ -37,9 +40,13 @@ export const Form = ({ onSubmit }) => {
       })
       .then((res) => {
         console.log(res.data);
+        message.success("successful appointment");
+        setBtnLoading(false);
       })
       .catch((err)=>{
         console.log(err);
+        message.error(" Appointment Failed");
+        setBtnLoading(false);
       })
 
  
@@ -145,8 +152,19 @@ function hi() {
           className="form-control btn btn-primary"
           type="submit"
         >
-          Submit
-        </button>
+        {btnLoading ? (
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        ""
+                      )}
+                      Submit
+                      </button>
        
       </div>
     </form>

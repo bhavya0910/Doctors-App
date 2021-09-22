@@ -15,7 +15,7 @@
     "antd": "^4.16.13",
     "axios": "^0.21.1",
     "basic-authorization-header": "^0.2.7",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.1.1",
     "email-validator": "^2.0.4",
     "focus-trap-react": "^8.7.1",
     "moment": "^2.29.1",

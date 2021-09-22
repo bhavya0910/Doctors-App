@@ -5,6 +5,7 @@ import { Skeleton, Divider } from "antd";
 import { Link } from "react-router-dom";
 import "./xRay.css";
 import axios from "axios";
+import { message } from "antd";
 
 var config = {
   method: "get",
@@ -36,7 +37,9 @@ export default class XRay extends Component {
           ...this.state,
           loading: false,
           xRayData: resp.data,
+         
         });
+        
       })
       .catch((err) => {
         this.setState({
