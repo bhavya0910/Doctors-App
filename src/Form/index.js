@@ -137,7 +137,7 @@ function hi() {
           id="time"
         />
       </div>
-      <DropdownButton id="dropdown-basic-button" title="Select Doctor" onClick={hi}>
+      <DropdownButton  variant="light" id="dropdown-basic-button" title="Select Doctor" onClick={hi}   style={{marginTop:'20px'}}>
  {
    option.map(data=>(
     <Dropdown.Item >{data}</Dropdown.Item>
@@ -147,10 +147,11 @@ function hi() {
 </DropdownButton>
       <div className="form-group">
         <button
-         style={{marginTop:'20px'}}
+         style={{marginTop:'20px', backgroundColor : "#172578"}}
           onClick={Submit}
           className="form-control btn btn-primary"
           type="submit"
+          
         >
         {btnLoading ? (
                         <Spinner
@@ -171,5 +172,3 @@ function hi() {
   );
 };
 export default Form;
-
-
