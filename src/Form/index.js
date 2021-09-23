@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { message } from "antd";
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import { Button, Spinner } from 'react-bootstrap'
+import { getOverflowOptions } from "antd/lib/tooltip/placements";
+const { Option } = Select;
 export const Form = ({ onSubmit }) => {
   
   const [data, setdata] = useState({
-    doctor: localStorage.getItem("Doctor_id"),
+    doctor: " ",
     time : " ",
     date: " ",
   
@@ -21,10 +23,11 @@ export const Form = ({ onSubmit }) => {
   
 
   function handle(e) {
-    const newdata = { ...data };
-    newdata[e.target.id] = e.target.value;
-    setdata(newdata);
-    console.log(newdata);
+    //const newdata = { ...data };
+    console.log(e.target.value);
+    //newdata[e.target.id] = e.target.value;
+    //setdata(newdata);
+    //console.log(newdata);
   }
   function Submit(e) {
     console.log("hi");
@@ -65,7 +68,7 @@ export const Form = ({ onSubmit }) => {
         let response=res.data;
        
         let n=response.length;
-        console.log(  response[1].user.name);
+       // console.log(  response[1].user.name);
       /* for(let i=0;i<n;i++)
        {
          let ans =  response[i].user.name;
@@ -79,10 +82,38 @@ export const Form = ({ onSubmit }) => {
         });
     };*/
     
-    for(let i = 0; i < n; i++){
+   /* for(let i = 0; i < n; i++){
       setoptions( arr => [...arr, `${response[i].user.name}`]);
-  };
-      // console.log(options);
+  };*/
+  /*for(let i = 0; i < n; i++){
+  setoptions((prevState) => ({
+    ...prevState,
+    
+      name:   response[i].user.name,
+      id : response[i].user.id,
+    
+  }));
+};*/
+/*for(let i =0;i<n;i++)
+{
+  setoptions({name : response[i].user.name, id :response[i].user.id })
+}*/
+let vilData=[{name : " " , id : " "}];
+        
+        for(let i=0;i<n;++i){
+          vilData.push(
+            {
+              
+              name : response[i].user.name,
+              id : response[i].user.id
+            }
+          );
+        }
+        console.log( vilData);
+
+setoptions( vilData);
+      console.log(option);
+      console.log("good luck")
      
      // setoptions(options);
         setLoading(false);
@@ -137,14 +168,11 @@ function hi() {
           id="time"
         />
       </div>
-      <DropdownButton  variant="light" id="dropdown-basic-button" title="Select Doctor" onClick={hi}   style={{marginTop:'20px'}}>
- {
-   option.map(data=>(
-    <Dropdown.Item >{data}</Dropdown.Item>
-   ))
- }
-  
-</DropdownButton>
+    
+<Select defaultValue="Select Doctor" style={{ width: 120 }} onChange={(e) => handle(e)}>
+{option.map(option=> (
+    <Option  value={option.id}>{option.name}</Option>  ))}
+      </Select>
       <div className="form-group">
         <button
          style={{marginTop:'20px', backgroundColor : "#172578"}}
