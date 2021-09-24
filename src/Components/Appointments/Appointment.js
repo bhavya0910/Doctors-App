@@ -5,8 +5,11 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import './Appointment.css';
 import { axiosInstance } from "../../utils/axiosInterceptor";
 import {Skeleton,Divider} from 'antd';
+import {Select} from 'antd';
 var basic = require('basic-authorization-header');
 
+
+let Option=Select.Option;
 const localizer = momentLocalizer(moment);
 
 class Appointment extends Component {
@@ -53,8 +56,10 @@ class Appointment extends Component {
         this.state.loading?(
           <Skeleton active={true}></Skeleton>
         ):(<div className="wrapper">
+           
         <div className="left_appointment_content">
           <button className="type1">Add Appointments</button>
+       
           </div>
         <div style={{ height: 700 }} className="right_appointment_content">
           

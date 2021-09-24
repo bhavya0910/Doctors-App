@@ -11,9 +11,11 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalComponent from './ModalComponent';
 import { Container } from '../../Container/index';
+import {Select} from 'antd';
 const localizer = momentLocalizer(moment);
-var basic = require('basic-authorization-header');
 
+var basic = require('basic-authorization-header');
+let Option=Select.Option;
 class Appointment extends Component {
   constructor(props) {
     super(props);
@@ -86,6 +88,7 @@ class Appointment extends Component {
           <Skeleton active={true}></Skeleton>
         ) : (
           <>
+          
             <div className="left_appointment_content">
             <Container  className="type1" style={{color:'#DCE1F9'}} triggerText={this.triggerText} onSubmit={this.onSubmit} />
               <button className="type1">Add Remainder</button>
