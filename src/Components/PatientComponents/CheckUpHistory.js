@@ -524,6 +524,8 @@ export default function ProfileView() {
   const [btnLoading, setBtnLoading] = useState(false);
   const [updatedPic, setPic] = useState(null);
   const [imgUrl, setUrl] = useState(null);
+ 
+  
 
   function readURL(input) {
     if (input) {
@@ -619,7 +621,7 @@ export default function ProfileView() {
               <Col md={8} sm={12} className="rightProfile_wrapper">
                 <form className="prof_edit_form" >
                   <div className="m_form_item">
-                    <h6>Usernamee</h6>
+                    <h6>Username</h6>
                     <input
                       value={username}
                       
@@ -738,6 +740,7 @@ export default function ProfileView() {
                           setPhone(profileInfo.data.user.phone_number);
                           setEmail(profileInfo.data.user.email);
                     }}>
+                       
                       <span>Cancel</span>
                     </button>
                   </div>
