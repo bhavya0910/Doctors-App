@@ -7,7 +7,14 @@ import { axiosInstance } from "../../utils/axiosInterceptor";
 import {Skeleton,Divider} from 'antd';
 import axios from 'axios';
 import 'antd/dist/antd.css';
-import { Modal } from 'react-responsive-modal';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+//import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import ModalComponent from './ModalComponent';
 import { Container } from '../../Container/index';
@@ -22,7 +29,8 @@ class Appointment extends Component {
     this.state = {
       loading: false,
       appointmentData: null,
-     
+      isModalVisible : false,
+      open : false,
     };
   }
   componentDidMount() {
@@ -73,11 +81,14 @@ class Appointment extends Component {
         });
       });
   }
-  triggerText = 'Ask for Appointment';
-  onSubmit = (event) => {
-    event.preventDefault(event);
-    console.log(event.target.date.value);
-    console.log(event.target.time.value);
+  
+ 
+   handleClickOpen = () => {
+    this.setState({ ...this.state, open: true });
+  };
+
+   handleClose = () => {
+    this.setState({ ...this.state, open: false });
   };
   
   render() {
@@ -90,7 +101,35 @@ class Appointment extends Component {
           <>
           
             <div className="left_appointment_content">
-            <Container  className="type1" style={{color:'#DCE1F9'}} triggerText={this.triggerText} onSubmit={this.onSubmit} />
+           {/* <Container  className="type1" style={{color:'#DCE1F9'}} triggerText={this.triggerText} onSubmit={this.onSubmit} />*/}
+           <div>
+      <Button variant="outlined" onClick={this.handleClickOpen}>
+        Open form dialog
+      </Button>
+      <Dialog open={this.open} onClose={this.handleClose}>
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here. We
+            will send updates occasionally.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleClose}>Cancel</Button>
+          <Button onClick={this.handleClose}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+              
               <button className="type1">Add Remainder</button>
              
             </div>
