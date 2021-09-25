@@ -1,30 +1,40 @@
 import React, { useState , useEffect } from "react";
 import { axiosInstance } from "../utils/axiosInterceptor";
-import { Select, Spin } from "antd";
+//import {  Spin } from "antd";
+import Select from 'react-select';
+//import { Select } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { message } from "antd";
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import { Button, Spinner } from 'react-bootstrap'
+import { getOverflowOptions } from "antd/lib/tooltip/placements";
+//const { Option } = Select;
 export const Form = ({ onSubmit }) => {
   
   const [data, setdata] = useState({
-    doctor: localStorage.getItem("Doctor_id"),
+    doctor: " ",
     time : " ",
     date: " ",
   
    
   });
- const[option,setoptions] = useState([]);
+ const[options,setoptions] = useState([]);
  const [loading, setLoading] = useState(false);
  const [btnLoading, setBtnLoading] = useState(false);
-  
+ //const[value,setvalue]= useState("default");
+  //const[selectedoption,setselect] = usestate('Select a doctor')
   
 
   function handle(e) {
+    
     const newdata = { ...data };
+    console.log(e.target.value);
     newdata[e.target.id] = e.target.value;
     setdata(newdata);
     console.log(newdata);
+    //setdata(...data, [event.target.value])
+   // console.log(data);
+    
   }
   function Submit(e) {
     console.log("hi");
@@ -65,7 +75,7 @@ export const Form = ({ onSubmit }) => {
         let response=res.data;
        
         let n=response.length;
-        console.log(  response[1].user.name);
+       // console.log(  response[1].user.name);
       /* for(let i=0;i<n;i++)
        {
          let ans =  response[i].user.name;
@@ -79,10 +89,38 @@ export const Form = ({ onSubmit }) => {
         });
     };*/
     
-    for(let i = 0; i < n; i++){
+   /* for(let i = 0; i < n; i++){
       setoptions( arr => [...arr, `${response[i].user.name}`]);
-  };
-      // console.log(options);
+  };*/
+  /*for(let i = 0; i < n; i++){
+  setoptions((prevState) => ({
+    ...prevState,
+    
+      name:   response[i].user.name,
+      id : response[i].user.id,
+    
+  }));
+};*/
+/*for(let i =0;i<n;i++)
+{
+  setoptions({name : response[i].user.name, id :response[i].user.id })
+}*/
+let vilData=[{}];
+        
+        for(let i=0;i<n;++i){
+          vilData.push(
+            {
+              
+              name : response[i].user.name,
+              id : response[i].user.id
+            }
+          );
+        }
+        console.log( vilData);
+
+setoptions( vilData);
+      console.log(options);
+      console.log("good luck")
      
      // setoptions(options);
         setLoading(false);
@@ -113,6 +151,10 @@ function onSearch(val) {
 function hi() {
   console.log("hi");
 }
+function handleChange(value) {
+  console.log(`selected ${value}`);
+}
+
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -137,14 +179,19 @@ function hi() {
           id="time"
         />
       </div>
-      <DropdownButton  variant="light" id="dropdown-basic-button" title="Select Doctor" onClick={hi}   style={{marginTop:'20px'}}>
- {
-   option.map(data=>(
-    <Dropdown.Item >{data}</Dropdown.Item>
-   ))
- }
-  
-</DropdownButton>
+    <div>
+    <select placeholder={<div>Type to search</div>}   style={{width:'100%',marginTop: '20px',height:'50%'}} id="doctor" onChange={(e) => handle(e)}>
+   
+            {options.map((option) => (
+              <option value={option.id}>{option.name}</option>
+            ))}
+            </select>
+            
+
+      
+      </div>
+
+
       <div className="form-group">
         <button
          style={{marginTop:'20px', backgroundColor : "#172578"}}

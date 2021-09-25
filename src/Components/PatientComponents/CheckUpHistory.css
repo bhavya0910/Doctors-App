@@ -1,3 +1,14 @@
+@media only screen and (min-width: 400px) {
+.pos1{
+margin-top: 35px !important;
+margin-left: 10px !important;
+}
+  
+}
+.pos1{
+  margin-top: 35px !important;
+margin-left: 40px !important;
+}
 .carde{
     padding: 20px;
    
