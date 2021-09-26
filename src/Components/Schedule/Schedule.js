@@ -93,7 +93,6 @@ class Appointment extends Component {
   handleClose = () => {
     this.setState({ ...this.state, open: false });
   };
-
   render() {
     return (
       <div className="wrapper">

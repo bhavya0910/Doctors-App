@@ -18,10 +18,15 @@ export const Form = ({ onSubmit }) => {
   const [btnLoading, setBtnLoading] = useState(false);
 
   function handle(e) {
+    
     const newdata = { ...data };
+    console.log(e.target.value);
     newdata[e.target.id] = e.target.value;
     setdata(newdata);
     console.log(newdata);
+    //setdata(...data, [event.target.value])
+   // console.log(data);
+    
   }
   function Submit(e) {
     console.log("hi");
